@@ -1,6 +1,6 @@
 
 import { useRoutes,BrowserRouter } from 'react-router-dom'
-import { CartProvider } from '../../Context'
+import { InfoProvider } from '../../Context'
 import NotFound from '../NotFound'
 import Home from '../Home'
 import './App.css'
@@ -22,12 +22,12 @@ const App = () => {
 
   return (
     <>
-    <CartProvider>
+    <InfoProvider>
     <BrowserRouter>
     <AppRoutes />
     <Navbar/>
     </BrowserRouter>
-    </CartProvider>
+    </InfoProvider>
 
     </>
   )

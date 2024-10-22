@@ -1,57 +1,55 @@
 import { NavLink } from "react-router-dom"
+import logo from "./../../../img/logo.png"
+const Navbar = () => {
 
-const Navbar = () =>{
-    const textDecoration = 'underline underline-offset-4'
 
     return (
-        <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm">
-            <ul className="flex items-center gap-3">
-                
-                <li className="font-semibold text-lg">
+        <nav className="bg-[#003366] flex justify-around items-center fixed z-10 top-0 w-full p-0 m-0 text-lg">
+            <div className="flex items-center">
+                <img src={logo} alt="Logo" className="h-36" /> {/* Ajusta la altura del logo según sea necesario */}
+            </div>
+            <ul className="flex items-center gap-x-16">
+                <li className="text-lg">
                     <NavLink
-                    to='/'
-                    className = {({ isActive }) => isActive ? textDecoration : undefined}
+                        to='/'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
                         Inicio
                     </NavLink>
-
                 </li>
                 <li>
                     <NavLink
-                    to='/'
-                    className={({ isActive }) => isActive ? textDecoration : undefined}
+                        to='/quienes-somos'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
                         Quienes Somos
                     </NavLink>
-
                 </li>
                 <li>
                     <NavLink
-                    to='/'
+                        to='/hospedajes'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
                         Hospedajes
                     </NavLink>
-
                 </li>
                 <li>
                     <NavLink
-                    to='/'
+                        to='/servicios'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
                         Servicios
                     </NavLink>
-
                 </li>
                 <li>
                     <NavLink
-                    to='/'
+                        to='/iniciar-sesion'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
-                        Iniciar Sesion
+                        Iniciar Sesión
                     </NavLink>
-
                 </li>
-                
             </ul>
-
         </nav>
     )
 
