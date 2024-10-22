@@ -24,8 +24,8 @@ const App = () => {
     <>
     <InfoProvider>
     <BrowserRouter>
-    <AppRoutes />
     <Navbar/>
+    <AppRoutes />  
     </BrowserRouter>
     </InfoProvider>
 

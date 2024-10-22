@@ -1,4 +1,4 @@
-import Layout from "../../Components/Layout"
+import ImageRandom  from "../../Components/imgRandom"
 
 
 
@@ -6,9 +6,18 @@ function Home() {
 
   return (
     <>
-     <Layout>
-      Home
-     </Layout>
+
+      <div className="">
+
+        <div className="  " style={{ backgroundColor: `#000000` }}>
+
+          <ImageRandom />
+
+        </div  >
+
+
+      </div>
+
     </>
   )
 }

@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom"
 import logo from "./../../../img/logo.png"
+
+
 const Navbar = () => {
 
 
     return (
-        <nav className="bg-[#003366] flex justify-around items-center fixed z-10 top-0 w-full p-0 m-0 text-lg">
+        <nav className="bg-[#003366] flex justify-around items-center z-10 top-0 w-full p-0 m-0 text-lg">
             <div className="flex items-center">
                 <img src={logo} alt="Logo" className="h-36" /> {/* Ajusta la altura del logo según sea necesario */}
             </div>
