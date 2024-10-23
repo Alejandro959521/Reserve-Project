@@ -19,7 +19,7 @@ const AboutUs = () => {
                 Conócenos y vivirás la experiencia Margarita Villages.</p>
                 </div>
             <div className="md:w-1/2 flex justify-center">
-            <img  className="w-full" src={img1} alt="Texto alternativo" />
+             <img  className="w-full" src={img1} alt="Texto alternativo" />
 
             </div>
 
