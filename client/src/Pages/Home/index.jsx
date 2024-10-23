@@ -1,5 +1,5 @@
 import ImageRandom  from "../../Components/imgRandom"
-
+import AboutUs  from "../../Components/AboutUs"
 
 
 function Home() {
@@ -9,11 +9,12 @@ function Home() {
 
       <div className="">
 
-        <div className="  " style={{ backgroundColor: `#000000` }}>
+        
 
           <ImageRandom />
+          <AboutUs/>
 
-        </div  >
+        
 
 
       </div>
