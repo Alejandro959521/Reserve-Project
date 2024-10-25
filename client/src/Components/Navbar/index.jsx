@@ -21,6 +21,14 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
+                        to='/Contactame'
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                    >
+                        Contactame
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
                         to='/quienes-somos'
                         className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
