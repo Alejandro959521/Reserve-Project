@@ -8,8 +8,13 @@ const AboutUs = () => {
 
 
     return (
+        <div>
+<div className="" >
+				<p className="text-6xl text-center text-dark pt-8 font-bold bg-[#2C3E50]">Quienes somos</p>
 
+			</div>
         <div className="flex flex-col md:flex-row items-center justify-between bg-[#2C3E50] p-10 " >
+            
             <div className="md:w-1/2  mr-10">
             <p className="text-xl text-white" >Hotel Margarita Village
                 Somos Un hotel tres estrellas ÚNICO TODO INCLUIDO en Porlamar, que ofrece la comodidad de estar ubicado en la mejor zona de la ciudad. Av. Bolívar, Urb. Dumar Contry Club, sector Bella Vista frente de la conocida “Playa La Caracola”.
@@ -26,7 +31,7 @@ const AboutUs = () => {
            
 
         </div>
-
+        </div>
     )
 
 }
