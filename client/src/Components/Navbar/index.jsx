@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import logo from "./../../../img/logo.png"
 
 
-const Navbar = () => {
+const Navbar = ({openLoginClick}) => {
 
 
     return (
@@ -53,7 +53,8 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/iniciar-sesion'
+                    to='/login'
+                        onClick={openLoginClick}
                         className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
                     >
                         Iniciar Sesión
