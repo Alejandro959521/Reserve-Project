@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom"
 
 
 
 
-const Login = ({ChangeToSingUp, onCloseLogin}) => {
+const Login = ({ ChangeToSingUp, onCloseLogin }) => {
 
 
     return (
@@ -12,15 +13,19 @@ const Login = ({ChangeToSingUp, onCloseLogin}) => {
 
                 <button
                     className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 font-bold text-xl"
+                    to='/'
                     onClick={onCloseLogin}
-                >
-                &times;
+
+                >  &times;
+
                 </button>
+
+
 
                 <h2 className="text-2xl font-bold text-center text-[#003366] mb-6">Iniciar Sesión</h2>
                 <form>
                     <div className="mb-4">
-                        <label for="email" className="block text-gray-700">Correo Electrónico</label>
+                        <label htmlFor="email" className="block text-gray-700">Correo Electrónico</label>
                         <input
                             type="email"
                             id="email"
@@ -29,7 +34,7 @@ const Login = ({ChangeToSingUp, onCloseLogin}) => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label for="password" className="block text-gray-700">Contraseña</label>
+                        <label htmlFor="password" className="block text-gray-700">Contraseña</label>
                         <input
                             type="password"
                             id="password"

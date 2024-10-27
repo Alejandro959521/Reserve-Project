@@ -6,7 +6,7 @@ import Home from '../Home'
 import './App.css'
 import Navbar from '../../Components/Navbar'
 import Login from '../../Components/Login'
-import {useState } from "react";
+import React,{useState } from "react";
 
 const AppRoutes = () => {
 
@@ -27,26 +27,28 @@ const App = () => {
 	const [showSignUp, setShowSignUp] = useState(false)
 
 	const openLoginClick = () => {
-		setShowLoginForm(!showLoginForm);
+		setShowLoginForm(true);
+    console.log("debo ser true", showLoginForm);
+
 	};
 
 
 
   const onCloseLogin = () => {
-		setShowLoginForm(!showLoginForm);
-		
+		setShowLoginForm(false);
+    console.log("debo ser false", showLoginForm);
 	}
 
   const ChangeToSingUp = () => {
 		onCloseLogin();
-		setShowSignUp(true)
+		//setShowSignUp(true)
 	}
 
   return (
     <>
     <InfoProvider>
     <BrowserRouter>
-    <Navbar onLoginClick={openLoginClick}/>
+    <Navbar openLoginClick={openLoginClick}/>
     {showLoginForm && <Login onCloseLogin={onCloseLogin} ChangeToSingUp={ChangeToSingUp}/>}
     <AppRoutes />  
     </BrowserRouter>
