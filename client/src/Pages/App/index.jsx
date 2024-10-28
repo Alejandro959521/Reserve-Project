@@ -1,58 +1,67 @@
 
-import { useRoutes,BrowserRouter } from 'react-router-dom'
+import { useRoutes, BrowserRouter,useNavigate } from 'react-router-dom'
 import { InfoProvider } from '../../Context'
 import NotFound from '../NotFound'
 import Home from '../Home'
 import './App.css'
 import Navbar from '../../Components/Navbar'
+import SignUp from '../../Components/SignUp'
 import Login from '../../Components/Login'
-import React,{useState } from "react";
+import React, { useState } from "react";
 
 const AppRoutes = () => {
 
   let routes = useRoutes([
-    
-    {path: '/', element: <Home/> },
-    {path: '/*', element: <NotFound/> },
-    {path: '/login', element: <Login/> } 
- 
+
+    { path: '/', element: <Home /> },
+    { path: '/*', element: <NotFound /> },
    
+
+
   ])
   return routes
 }
 
-const App = () => { 
+const App = () => {
+  const navigate = useNavigate();
 
   const [showLoginForm, setShowLoginForm] = useState(false);
-	const [showSignUp, setShowSignUp] = useState(false)
+  const [showSignUp, setShowSignUp] = useState(false)
 
-	const openLoginClick = () => {
-		setShowLoginForm(true);
-    console.log("debo ser true", showLoginForm);
+  const openLoginClick = () => {
+    setShowLoginForm(true);
+    setShowSignUp(false)
 
-	};
-
-
+  };
 
   const onCloseLogin = () => {
-		setShowLoginForm(false);
-    console.log("debo ser false", showLoginForm);
-	}
+    setShowLoginForm(false);
+  }
 
   const ChangeToSingUp = () => {
-		onCloseLogin();
-		//setShowSignUp(true)
-	}
+    onCloseLogin();
+    setShowSignUp(true)
+    setShowLoginForm(false);
+    
+  }
+
+  const onCloseSignUp = () => {  
+    setShowSignUp(false)
+    
+  }
 
   return (
     <>
-    <InfoProvider>
-    <BrowserRouter>
-    <Navbar openLoginClick={openLoginClick}/>
-    {showLoginForm && <Login onCloseLogin={onCloseLogin} ChangeToSingUp={ChangeToSingUp}/>}
-    <AppRoutes />  
-    </BrowserRouter>
-    </InfoProvider>
+      <InfoProvider>     
+          <Navbar openLoginClick={openLoginClick} ChangeToSingUp={ChangeToSingUp}/>
+          {showLoginForm && (<Login onCloseLogin={onCloseLogin} ChangeToSingUp={ChangeToSingUp} 
+              />         
+          )}
+            {showSignUp && (<SignUp onCloseSignUp={onCloseSignUp} 
+              />         
+          )}
+          <AppRoutes />      
+      </InfoProvider>
 
     </>
   )

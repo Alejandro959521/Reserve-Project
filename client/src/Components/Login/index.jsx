@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom"
 
 
 
@@ -7,8 +6,8 @@ const Login = ({ ChangeToSingUp, onCloseLogin }) => {
 
 
     return (
+        
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-
             <div className="relative bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
 
                 <button
@@ -66,7 +65,7 @@ const Login = ({ ChangeToSingUp, onCloseLogin }) => {
                 </button>
             </div>
         </div>
-
+      
     )
 
 }
