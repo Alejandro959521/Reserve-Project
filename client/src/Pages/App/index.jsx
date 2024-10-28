@@ -1,21 +1,23 @@
 
-import { useRoutes, BrowserRouter,useNavigate } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 import { InfoProvider } from '../../Context'
 import NotFound from '../NotFound'
 import Home from '../Home'
+import Lodging from '../Lodging'
 import './App.css'
 import Navbar from '../../Components/Navbar'
 import SignUp from '../../Components/SignUp'
 import Login from '../../Components/Login'
 import React, { useState } from "react";
-
+import PageReserve from '../PageReserve'
 const AppRoutes = () => {
 
   let routes = useRoutes([
 
-    { path: '/', element: <Home /> },
+    { path: '/', element: <Home /> }, 
+    { path: '/Hospedajes', element: <Lodging /> },
+    { path: '/Reserva', element: <PageReserve /> },
     { path: '/*', element: <NotFound /> },
-   
 
 
   ])
@@ -23,7 +25,6 @@ const AppRoutes = () => {
 }
 
 const App = () => {
-  const navigate = useNavigate();
 
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false)
@@ -59,7 +60,7 @@ const App = () => {
           )}
             {showSignUp && (<SignUp onCloseSignUp={onCloseSignUp} 
               />         
-          )}
+          )}         
           <AppRoutes />      
       </InfoProvider>
 
