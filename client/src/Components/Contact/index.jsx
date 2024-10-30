@@ -20,6 +20,9 @@ const Contact = () => {
 		.catch(error => alert('Error al enviar el correo...'))
 	}
 
+
+	
+
     return (
 
         <div className="w-full" >

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import logo from "./../../../img/logo.png"
 import React, { useState } from "react";
-import { Link } from 'react-scroll';
+
 
 
 const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
@@ -26,25 +26,29 @@ const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to='/Contactame'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                <NavLink
+                        to="/#contactSection"
+                        className={({ isActive }) =>
+                            isActive ? 'text-white hover:text-[#DAA520]' : 'text-white hover:text-[#DAA520]'
+                        }
                     >
-                        Contactame
+                        Contáctame
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to='/quienes-somos'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                <NavLink
+                        to="/#aboutSection"
+                        className={({ isActive }) =>
+                            isActive ? 'text-white hover:text-[#DAA520]' : 'text-white hover:text-[#DAA520]'
+                        }
                     >
-                        Quienes Somos
+                        Quiénes Somos
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to='/hospedajes'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white hover:text-[#DAA520]'}
                     >
                         Hospedajes
                     </NavLink>
@@ -52,7 +56,7 @@ const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
                 <li>
                     <NavLink
                         to='/servicios'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white hover:text-[#DAA520]'}
                     >
                         Servicios
                     </NavLink>
@@ -72,7 +76,7 @@ const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
                             <path
                                 fillRule="evenodd"
                                 d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
-                                clipRule="evenodd"
+                                clipRule="evenodd"d
                             />
                         </svg>
                     </button>
