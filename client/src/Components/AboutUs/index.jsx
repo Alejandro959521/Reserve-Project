@@ -9,7 +9,7 @@ const AboutUs = () => {
 
     return (
         <div>
-<div className="" >
+<div className=""id="aboutSection" >
 				<p className="text-6xl text-center text-dark pt-8 font-bold bg-[#2C3E50]">Quienes somos</p>
 
 			</div>

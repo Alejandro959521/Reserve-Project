@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import logo from "./../../../img/logo.png"
 import React, { useState } from "react";
+import { Link } from 'react-scroll';
 
 
 const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
@@ -19,7 +20,7 @@ const Navbar = ({ openLoginClick,ChangeToSingUp }) => {
                 <li className="text-lg">
                     <NavLink
                         to='/'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white'}
+                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white  hover:text-[#DAA520]'}
                     >
                         Inicio
                     </NavLink>

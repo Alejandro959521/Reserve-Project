@@ -25,7 +25,7 @@ const Contact = () => {
         <div className="w-full" >
            
 
-			<div className=" flex flex-wrap text-white justify-around pt-4 border-b-2" style={{ backgroundColor: `#000000` }}>
+			<div  id="contactSection" className=" flex flex-wrap text-white justify-around pt-4 border-b-2" style={{ backgroundColor: `#000000` }}>
 				<div className=" p-6 text-center max-w-xs">
 					<i className="fas fa-map-marker-alt text-4xl mb-4"></i>
 					<h3 className="text-2xl font-bold mb-2 ">DIRECCIÓN </h3>
