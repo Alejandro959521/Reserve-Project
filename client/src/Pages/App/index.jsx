@@ -10,6 +10,9 @@ import SignUp from '../../Components/SignUp'
 import Login from '../../Components/Login'
 import React, { useState } from "react";
 import PageReserve from '../PageReserve'
+import Rooms from '../Rooms'
+import Reserves from '../Reserves'
+import Users from '../Users'
 const AppRoutes = () => {
 
   let routes = useRoutes([
@@ -17,6 +20,9 @@ const AppRoutes = () => {
     { path: '/', element: <Home /> }, 
     { path: '/Hospedajes', element: <Lodging /> },
     { path: '/Reserva', element: <PageReserve /> },
+    {path: '/Habitaciones', element:<Rooms />},
+    {path: '/Reservas', element:<Reserves />},
+    {path: '/Usuarios', element:<Users />},
     { path: '/*', element: <NotFound /> },
 
 

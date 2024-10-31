@@ -28,15 +28,6 @@ const SignUp = ({ onCloseSignUp }) => {
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="username" className="block text-gray-700">Usuario</label>
-                        <input
-                            type="text"
-                            id="username"
-                            className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#669966]"
-                            placeholder="Ingresa tu usuario"
-                        />
-                    </div>
 
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700">Nombre y Apellido </label>
