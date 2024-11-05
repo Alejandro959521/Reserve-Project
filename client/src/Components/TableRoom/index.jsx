@@ -6,7 +6,7 @@ const TableRoom = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [infoRoom, setInfodRoom] = useState(null);
+    const [infoRoom, setInfoRoom] = useState(null);
 
     const rooms = 
         { id: 1, name: 'John Doe', price: 100, cantidad: 4, image:'',description:'algo' }
@@ -14,13 +14,13 @@ const TableRoom = () => {
     
 
     const openCreateModal = () => {
-        setInfodRoom(null);
+        setInfoRoom(null);
         setIsEditing(false);
         setIsModalOpen(true);
     };
 
     const openEditModal = (rooms) => {
-        setInfodRoom(rooms);
+        setInfoRoom(rooms);
         setIsEditing(true);
         setIsModalOpen(true);
     };

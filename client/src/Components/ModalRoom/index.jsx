@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const UserModal = ({ isOpen, onClose, isEditing, infoRoom }) => {
+const ModalRoom = ({ isOpen, onClose, isEditing, infoRoom }) => {
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
@@ -78,4 +78,4 @@ const UserModal = ({ isOpen, onClose, isEditing, infoRoom }) => {
     );
 };
 
-export default UserModal;
+export default ModalRoom;
