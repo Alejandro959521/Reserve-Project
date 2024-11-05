@@ -6,21 +6,21 @@ const TableRoom = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [selectedRoom, setSelectedRoom] = useState(null);
+    const [infoRoom, setInfodRoom] = useState(null);
 
-    const users = [
-        { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123456789' },
+    const rooms = 
+        { id: 1, name: 'John Doe', price: 100, cantidad: 4, image:'',description:'algo' }
         // Otros usuarios
-    ];
+    
 
     const openCreateModal = () => {
-        setSelectedRoom(null);
+        setInfodRoom(null);
         setIsEditing(false);
         setIsModalOpen(true);
     };
 
-    const openEditModal = (user) => {
-        setSelectedRoom(user);
+    const openEditModal = (rooms) => {
+        setInfodRoom(rooms);
         setIsEditing(true);
         setIsModalOpen(true);
     };
@@ -66,7 +66,7 @@ const TableRoom = () => {
                         <td className="px-4 py-2 border">100 $</td>
                         <td className="px-4 py-2 border">imagen</td>
                         <td className="px-4 py-2 border">
-                            <button  onClick={() => openEditModal(users)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
+                            <button  onClick={() => openEditModal(rooms)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
                             <button className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@ const TableRoom = () => {
                 onClose={() => setIsModalOpen(false)}
                 // onSave={handleSave}
                 isEditing={isEditing}
-                selectedRoom={selectedRoom}
+                infoRoom={infoRoom}
             />
 
         </div>

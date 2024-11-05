@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
-const UserModal = ({ isOpen, onClose, isEditing, selectedRoom }) => {
+const UserModal = ({ isOpen, onClose, isEditing, infoRoom }) => {
+
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const [price, setPrice] = useState('');
+    const [cantidad, setCantidad] = useState('');
+    const [image, setImage] = useState('');
+    const [description, setDescription] = useState('');
 
     useEffect(() => {
-        if (isEditing && selectedRoom) {
-            setName(selectedRoom.name);
-            setEmail(selectedRoom.email);
-            setPhone(selectedRoom.phone);
+        if (isEditing && infoRoom) {
+            setName(infoRoom.name);
+            setPrice(infoRoom.price);
+            setCantidad(infoRoom.cantidad);
+            setImage(infoRoom.image);
+            setDescription(infoRoom.description)
         } else {
             setName('');
-            setEmail('');
-            setPhone('');
+            setPrice('');
+            setCantidad('');
+            setImage('');
+            setDescription('');
         }
-    }, [isEditing, selectedRoom]);
+    }, [isEditing, infoRoom]);
 
     // const handleSave = () => {
     //     onSave({ name, email, phone });
@@ -27,7 +34,7 @@ const UserModal = ({ isOpen, onClose, isEditing, selectedRoom }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                <h2 className="text-xl font-bold mb-4">{isEditing ? 'Editar Usuario' : 'Crear Usuario'}</h2>
+                <h2 className="text-xl font-bold mb-4">{isEditing ? 'Editar Habitación' : 'Crear Habitación'}</h2>
                 <input
                     type="text"
                     placeholder="Nombre"
@@ -36,18 +43,31 @@ const UserModal = ({ isOpen, onClose, isEditing, selectedRoom }) => {
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
-                    type="email"
-                    placeholder="Correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="number"
+                    placeholder="Cantidad de personas"
+                    value={cantidad}
+                    onChange={(e) => setCantidad(e.target.value)}
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
-                    type="tel"
-                    placeholder="Teléfono"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    type="number"
+                    placeholder="Precio"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                     className="w-full p-2 mb-4 border rounded"
+                />
+                 <input
+                    type="file"
+                    placeholder="Imagen"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    className="w-full p-2 mb-4 border rounded"
+                />
+               <textarea
+                    placeholder="Descripción"
+                    className="border w-full mb-2 p-2"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
                 <div className="flex justify-end gap-2">
                     <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancelar</button>
