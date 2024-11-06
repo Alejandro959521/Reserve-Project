@@ -10,7 +10,7 @@ import { useState,useEffect } from "react";
 const imgRandom = () => {
 
     const listImage = [img1, img2, img3]
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 
 
