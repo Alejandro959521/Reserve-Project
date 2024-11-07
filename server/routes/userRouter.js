@@ -5,12 +5,12 @@ const router = express.Router();
 const UserServices = require('./../services/userService');
 const service = new UserServices();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   res.json({ fruits: ["hola","adios"] });
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 const body = req.body;
 res.status(201).res.json({
     message: 'created',
@@ -18,17 +18,21 @@ res.status(201).res.json({
  });
 });
 
-router.patch('/:id', (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  res.json({
-      message: 'update',
-      data: body,
-      id
-   });
+router.patch('/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const product = await service.update(id, body);
+    res.json(product);
+  }
+  catch(error) {
+    res.status(404).json({
+      message:error.message
+    })
+   }
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     res.json({
         message: 'deleted',

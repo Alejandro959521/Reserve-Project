@@ -1,4 +1,4 @@
-
+const boom = require('@hapi/boom');
 
 
 class UserServices {
@@ -9,33 +9,30 @@ constructor(){
 
 }
 
-generate(){
+async generate(){
 
 
 }
-create(data) {
-const newProduct ={
+async create(data) {
 
 }
 
-}
-
-find() {
+async find() {
 
 
 }
 
-findOne() {
+async findOne() {
 
 
 }
 
-update(){
+async update(){
 
 
 }
 
-delete(){
+async delete(){
 
 
 
