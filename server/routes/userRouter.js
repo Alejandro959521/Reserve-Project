@@ -3,9 +3,21 @@ const express = require('express');
 const router = express.Router();
 
 const UserServices = require('./../services/userService');
+const validatorHandler = require('./../middlewares/validatorHandler');
+
+
 const service = new UserServices();
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
+  try {
+
+    const users = await service.find();
+    res.json(users);
+
+  } catch(error) {
+next(error);
+
+  }
   res.json({ fruits: ["hola","adios"] });
 });
 
