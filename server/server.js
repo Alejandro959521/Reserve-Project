@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 app.use(express.json());
-const { logErrors,errorHandler, boomErrorHandler } = require('./middlewares/errorHandler');
+const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/errorHandler');
 
 const corsOpt = {
     origin: ["http://localhost:5173/"],
@@ -16,6 +16,7 @@ app.use(cors(corsOpt));
 routerApi(app);
 
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

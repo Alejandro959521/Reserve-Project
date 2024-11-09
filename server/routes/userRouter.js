@@ -4,31 +4,45 @@ const router = express.Router();
 
 const UserServices = require('./../services/userService');
 const validatorHandler = require('./../middlewares/validatorHandler');
+const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schema/userSchema');
 
 
 const service = new UserServices();
 
 router.get("/", async (req, res, next) => {
   try {
-
     const users = await service.find();
     res.json(users);
-
-  } catch(error) {
-next(error);
-
+  } catch (error) {
+    next(error);
   }
-  res.json({ fruits: ["hola","adios"] });
 });
 
+router.get('/:id',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const user = await service.findOne(id);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-router.post('/', async (req, res) => {
-const body = req.body;
-res.status(201).res.json({
-    message: 'created',
-    data: body
- });
-});
+router.post('/',
+  validatorHandler(createUserSchema,'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newUser = await service.create(body);
+      res.status(201).json(newUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.patch('/:id',  async (req, res) => {
   try {
