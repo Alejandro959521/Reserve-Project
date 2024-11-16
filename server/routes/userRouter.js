@@ -44,7 +44,10 @@ router.post('/',
   }
 );
 
-router.patch('/:id',  async (req, res) => {
+router.patch('/:id',
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(updateUserSchema, 'body'),
+  async (req, res, next) => {
   try {
     const { id } = req.params;
     const body = req.body;
@@ -52,19 +55,23 @@ router.patch('/:id',  async (req, res) => {
     res.json(product);
   }
   catch(error) {
-    res.status(404).json({
-      message:error.message
-    })
+    next(error);
    }
   });
 
-  router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    res.json({
-        message: 'deleted',
-        id
-     });
-    });
+  router.delete('/:id',
+    validatorHandler(getUserSchema, 'params'),
+    async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      await service.delete(id);
+      res.status(201).json({id});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  );
 
 
 module.exports = router;

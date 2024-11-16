@@ -4,7 +4,7 @@ const getConnection = require('../libs/postgres');
 const pool = require('../libs/sequelize');
 const { models } = require('./../libs/sequelize')
 
-class UserServices {
+class ReserveServices {
 
   constructor() {
 
@@ -18,9 +18,11 @@ class UserServices {
   }
 
   async create(data) {
-    const newUser = await models.User.create(data);
-    return newUser
+    const newReserve = await models.User.create(data);
+    return newReserve
   }
+
+
 
   async find() {
 
@@ -51,8 +53,10 @@ class UserServices {
     await user.destroy();
     return {id};
 
+
   }
+
 
 }
 
-module.exports = UserServices;
+module.exports = ReserveServices;
