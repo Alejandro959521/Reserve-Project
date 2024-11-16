@@ -8,7 +8,7 @@ async function getConnection() {
     user: 'miguel',
     password:'admin123',
     database:'my_reserve'
-  });
+  }) ;
   await client.connect();
   return client;
 }
