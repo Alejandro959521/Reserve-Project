@@ -23,9 +23,11 @@ class RoomServices {
   }
 
   async findOne(id) {
-    const room = await models.Room.findByPk(id);
+    const room = await models.Room.findByPk(id, {
+      include:['reserves']
+    });
     if (!room){
-      throw boom.notFound('user not found')
+      throw boom.notFound('room not found')
     }
     return room
 

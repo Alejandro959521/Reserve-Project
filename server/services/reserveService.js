@@ -11,46 +11,48 @@ class ReserveServices {
 
   }
 
-  async generate(data) {
-
-    return data
-
-  }
-
   async create(data) {
-    const newReserve = await models.User.create(data);
+    const newReserve = await models.Reserve.create(data);
     return newReserve
   }
 
-
-
   async find() {
 
-    const client = await models.User.findAll();
-    return client;
+    const reserve = await models.Reserve.findAll(
+      {
+      include: ['user','room'],
+
+    }
+  );
+    return reserve;
   }
 
   async findOne(id) {
-    const user = await models.User.findByPk(id);
-    if (!user){
-      throw boom.notFound('user not found')
+    const reserve = await models.Reserve.findByPk(id,
+      {
+        include: ['user','room'],
+
+      }
+    );
+    if (!reserve){
+      throw boom.notFound('reserve not found')
     }
-    return user
+    return reserve
 
   }
 
   async update(id, changes) {
 
-    const user = await this.findOne(id);
-    const rta = await user.update(changes);
+    const reserve = await this.findOne(id);
+    const rta = await reserve.update(changes);
     return rta;
 
   }
 
   async delete(id) {
 
-    const user = await this.findOne(id);
-    await user.destroy();
+    const reserve = await this.findOne(id);
+    await reserve.destroy();
     return {id};
 
 

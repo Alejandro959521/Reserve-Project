@@ -11,12 +11,6 @@ class UserServices {
 
   }
 
-  async generate(data) {
-
-    return data
-
-  }
-
   async create(data) {
     const newUser = await models.User.create(data);
     return newUser
@@ -29,7 +23,9 @@ class UserServices {
   }
 
   async findOne(id) {
-    const user = await models.User.findByPk(id);
+    const user = await models.User.findByPk(id, {
+      include:['reserves']
+    });
     if (!user){
       throw boom.notFound('user not found')
     }
