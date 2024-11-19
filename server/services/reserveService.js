@@ -1,30 +1,66 @@
 const boom = require('@hapi/boom');
 const getConnection = require('../libs/postgres');
+const { Op } = require('sequelize');
 
-const pool = require('../libs/sequelize');
 const { models } = require('./../libs/sequelize')
 
 class ReserveServices {
 
-  constructor() {
-
-
-  }
-
   async create(data) {
+    const { startDate, endDate, roomId } = data;
+
+
+    const existingReservations = await models.Reserve.findAll({
+      where: {
+        roomId,
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.between]: [startDate, endDate],
+            },
+          },
+          {
+            endDate: {
+              [Op.between]: [startDate, endDate],
+            },
+          },
+          {
+            [Op.and]: [
+              {
+                startDate: {
+                  [Op.lte]: startDate,
+                },
+              },
+              {
+                endDate: {
+                  [Op.gte]: endDate,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    if (existingReservations.length > 0) {
+      throw boom.conflict(
+        'Las fechas de reserva ya están ocupadas para esta habitación.'
+      );
+    }
+
     const newReserve = await models.Reserve.create(data);
-    return newReserve
+    return newReserve;
   }
 
   async find() {
 
-    const reserve = await models.Reserve.findAll(
+    const reserves = await models.Reserve.findAll(
       {
       include: ['user','room'],
 
     }
   );
-    return reserve;
+    return reserves;
   }
 
   async findOne(id) {
@@ -43,9 +79,55 @@ class ReserveServices {
 
   async update(id, changes) {
 
+    const { startDate, endDate, roomId } = changes;
+
+
+    const currentReserve = await this.findOne(id);
+
+
+    const overlappingReservations = await models.Reserve.findAll({
+      where: {
+        roomId: roomId || currentReserve.roomId,
+        id: { [Op.ne]: id },
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.between]: [startDate, endDate],
+            },
+          },
+          {
+            endDate: {
+              [Op.between]: [startDate, endDate],
+            },
+          },
+          {
+            [Op.and]: [
+              {
+                startDate: {
+                  [Op.lte]: startDate,
+                },
+              },
+              {
+                endDate: {
+                  [Op.gte]: endDate,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    if (overlappingReservations.length > 0) {
+      throw boom.conflict(
+        'Las fechas de reserva ya están ocupadas para esta habitación.'
+      );
+    }
+
+    // Actualizar la reserva después de validar
     const reserve = await this.findOne(id);
-    const rta = await reserve.update(changes);
-    return rta;
+    const updatedReserve = await reserve.update(changes);
+    return updatedReserve;
 
   }
 

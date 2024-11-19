@@ -2,7 +2,7 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const RESERVE_TABLE = 'reserves';
 const {USER_TABLE} = require('./userModel');
-const {ROOM_TABLE} = require('./reserveModel');
+const {ROOM_TABLE} = require('./roomModel');
 
 
 const ReserveSchema = {
@@ -16,12 +16,12 @@ const ReserveSchema = {
   startDate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
-    unique: false
+
   },
   endDate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
-    unique: false
+
 
   },
   userId: {
@@ -72,11 +72,17 @@ class Reserve extends Model {
       sequelize,
       tableName: RESERVE_TABLE,
       modelName: 'Reserve',
-      timestamps: false
-
+      timestamps: false,
+      indexes: [
+        {
+          unique: true,
+          fields: ['startDate', 'endDate', 'roomId'], // Evitar superposición en la BD.
+        },
+      ],
     }
   }
 
 }
 
 module.exports = { RESERVE_TABLE, ReserveSchema, Reserve }
+
