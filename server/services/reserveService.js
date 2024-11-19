@@ -79,7 +79,7 @@ class ReserveServices {
 
   async update(id, changes) {
 
-    const { startDate, endDate, roomId } = changes;
+     const { startDate, endDate, roomId } = changes;
 
 
     const currentReserve = await this.findOne(id);
