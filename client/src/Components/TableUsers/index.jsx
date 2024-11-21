@@ -57,6 +57,8 @@ const TableUsers = () => {
                     </tr>
                 </thead>
                 <tbody >
+                    
+                    
                     <tr className="text-center">
                         <td className="px-4 py-2 border">Miguel Ojeda</td>
                         <td className="px-4 py-2 border">miguel@gmail.com</td>

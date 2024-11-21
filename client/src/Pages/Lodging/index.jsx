@@ -12,7 +12,7 @@ function Loadging() {
             <div
                 className="flex items-center justify-center h-screen bg-cover bg-center"
                 style={{
-                    backgroundImage: `url(${img2})`, backgroundSize: 'cover'
+                    backgroundImage: `url(${img1})`, backgroundSize: 'cover'
                 }}
 
             >
