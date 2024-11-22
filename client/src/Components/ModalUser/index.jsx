@@ -1,29 +1,79 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from "react"
+import { InfoContext } from "../../Context"
 
 const ModalUser = ({ isOpen, onClose, isEditing, infoUser }) => {
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const context = useContext(InfoContext)
+
+    const [dataUser, setDataUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        role:"",
+    })
 
     useEffect(() => {
         if (isEditing && infoUser) {
-            setName(infoUser.name);
-            setEmail(infoUser.email);
-            setPhone(infoUser.phone);
+            setDataUser({
+                name: infoUser.name,
+                email: infoUser.email,
+                phone: infoUser.phone,
+                password :infoUser.password,
+                role: infoUser.role
+            });
+
         } else {
-            setName('');
-            setEmail('');
-            setPhone('');
+            setDataUser({
+                name: "",
+                email: "",
+                phone: "",
+                password: "",
+            });
         }
     }, [isEditing, infoUser]);
 
-    // const handleSave = () => {
-    //     onSave({ name, email, phone });
-    //     onClose();
-    // };
+    const handleInfo = (event) => {
+        setDataUser({
+            ...dataUser,
+            [event.target.name]: event.target.value
+        })
+    }
 
+
+    const resetForm = () => {
+        setDataUser({
+            name: "",
+            email: "",
+            phone: "",
+            password: "",
+        });
+
+    };
+    const saveUser = () => {
+        if (!dataUser.name.trim() || !dataUser.email.trim() || !dataUser.phone.trim() || !dataUser.password.trim()) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+        context.createUser(dataUser)
+        context.getUser()
+        resetForm();
+        onClose();
+    };
+
+    const updateUser = () => {
+        if (!dataUser.name.trim() || !dataUser.email.trim() || !dataUser.phone.trim() || !dataUser.password.trim()) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+        context.updateUser(dataUser,infoUser.id)
+        context.getUser()
+        resetForm()
+        onClose()
+    };
     if (!isOpen) return null;
+
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
@@ -32,27 +82,42 @@ const ModalUser = ({ isOpen, onClose, isEditing, infoUser }) => {
                 <input
                     type="text"
                     placeholder="Nombre"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={dataUser.name}
+                    onChange={handleInfo}
+                    name="name"
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
                     type="email"
                     placeholder="Correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={dataUser.email}
+                    onChange={handleInfo}
+                    name="email"
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
                     type="text"
                     placeholder="Teléfono"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    value={dataUser.phone}
+                    onChange={handleInfo}
+                    name="phone"
                     className="w-full p-2 mb-4 border rounded"
                 />
+                {!isEditing && (
+                    <input
+                        type="text"
+                        placeholder="Contraseña"
+                        value={dataUser.password}
+                        onChange={handleInfo}
+                        name="password"
+                        className="w-full p-2 mb-4 border rounded"
+                    />
+                )}
                 <div className="flex justify-end gap-2">
                     <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancelar</button>
-                    <button  className="px-4 py-2 bg-blue-500 text-white rounded">Confirmar</button>
+
+                    <button onClick={isEditing ? updateUser : saveUser}  className="px-4 py-2 bg-blue-500 text-white rounded">{isEditing ? "Editar" : "Confirmar"}</button>
+               
                 </div>
             </div>
         </div>

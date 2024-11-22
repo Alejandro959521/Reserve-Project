@@ -12,7 +12,7 @@ const UserSchema = {
   email: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
+
   },
   name: {
     allowNull: false,
@@ -22,7 +22,7 @@ const UserSchema = {
   phone: {
     allowNull: false,
   type: DataTypes.STRING(15),
-  unique: true,
+
   validate: {
     is: /^[0-9\-+() ]*$/
   }

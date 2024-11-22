@@ -19,8 +19,9 @@ const options = {
     } else {
       callback(new Error('no permitido'));
     }
-  }
-}
+  },
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE","OPTIONS"],
+};
 app.use(cors(options));
 
 
