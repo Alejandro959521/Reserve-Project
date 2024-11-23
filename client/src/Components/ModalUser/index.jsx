@@ -57,7 +57,6 @@ const ModalUser = ({ isOpen, onClose, isEditing, infoUser }) => {
             return;
         }
         context.createUser(dataUser)
-        context.getUser()
         resetForm();
         onClose();
     };
@@ -68,7 +67,6 @@ const ModalUser = ({ isOpen, onClose, isEditing, infoUser }) => {
             return;
         }
         context.updateUser(dataUser,infoUser.id)
-        context.getUser()
         resetForm()
         onClose()
     };

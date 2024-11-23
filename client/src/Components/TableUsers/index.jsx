@@ -15,6 +15,7 @@ const TableUsers = () => {
         setInfoUser(null);
         setIsEditing(false);
         setIsModalOpen(true);
+        
     };
 
     const openEditModal = (user) => {
@@ -31,7 +32,7 @@ const TableUsers = () => {
             <div className="flex justify-between items-center mb-4">
                 <h1 className="text-2xl font-bold text-left">Usuarios</h1>
                 <div className="flex-grow flex justify-center pr-28">
-                    <button onClick={ () => openCreateModal} className="bg-green-700 text-white border rounded-md px-4 py-2 font-medium hover:bg-green-600 transition duration-300 ease-in-out">
+                    <button onClick={openCreateModal} className="bg-green-700 text-white border rounded-md px-4 py-2 font-medium hover:bg-green-600 transition duration-300 ease-in-out">
                         Crear Nuevo Usuario
                     </button>
                 </div>
@@ -56,12 +57,11 @@ const TableUsers = () => {
                             <td className="px-4 py-2 border">{item.phone}</td>
                             <td className="px-4 py-2 border">
                                 <button onClick={ () => openEditModal(item)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
-                                <button className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
+                                <button  onClick={ () => context.deleteUser(item.id)} className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
                             </td>
                         </tr>
 
-                    ))
-
+                     ))
 
                     }
 
