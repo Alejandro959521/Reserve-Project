@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ModalUser from '../ModalUser';
 import { useContext } from "react"
 import { InfoContext } from "../../Context"

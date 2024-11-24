@@ -41,7 +41,6 @@ const ModalUser = ({ isOpen, onClose, isEditing, infoUser }) => {
         })
     }
 
-
     const resetForm = () => {
         setDataUser({
             name: "",

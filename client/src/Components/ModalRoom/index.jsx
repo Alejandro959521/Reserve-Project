@@ -1,34 +1,74 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from "react"
+import { InfoContext } from "../../Context"
 
 const ModalRoom = ({ isOpen, onClose, isEditing, infoRoom }) => {
+    const context = useContext(InfoContext)
 
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [cantidad, setCantidad] = useState('');
-    const [image, setImage] = useState('');
-    const [description, setDescription] = useState('');
+    const [dataRoom, setDataRoom] = useState({
+        quantity: "",
+        price: "",
+        name: "",
+        image: "",
+        description: ""
+    })
 
     useEffect(() => {
         if (isEditing && infoRoom) {
-            setName(infoRoom.name);
-            setPrice(infoRoom.price);
-            setCantidad(infoRoom.cantidad);
-            setImage(infoRoom.image);
-            setDescription(infoRoom.description)
+            setDataRoom({
+                quantity: infoRoom.quantity,
+                price: infoRoom.price,
+                name: infoRoom.name,
+                image : infoRoom.image,
+                description: infoRoom.description
+            });
         } else {
-            setName('');
-            setPrice('');
-            setCantidad('');
-            setImage('');
-            setDescription('');
+            setDataRoom({
+                quantity: "",
+                price: "",
+                name: "",
+                image: "",
+                description: ""
+            })
         }
     }, [isEditing, infoRoom]);
 
-    // const handleSave = () => {
-    //     onSave({ name, email, phone });
-    //     onClose();
-    // };
+    const handleInfo = (event) => {
+        setDataRoom({
+            ...dataRoom,
+            [event.target.name]: event.target.value
+        })
+    }
 
+    const resetForm = () => {
+         setDataRoom({
+                quantity: "",
+                price: "",
+                name: "",
+                image: "",
+                description: ""
+            });
+        }
+
+        const saveRoom = () => {
+            if (!dataRoom.name.trim() || !String(dataRoom.quantity).trim() || !String(dataRoom.quantity).trim() || !dataRoom.image.trim() || !dataRoom.description.trim()) {
+                alert("Todos los campos son obligatorios.");
+                return;
+            }
+            context.createRoom(dataRoom)
+            resetForm();
+            onClose();
+        };
+    
+        const updateRoom = () => {
+            if(!dataRoom.name.trim() || !String(dataRoom.quantity).trim() || !String(dataRoom.quantity).trim() || !dataRoom.image.trim() || !dataRoom.description.trim()) {
+                alert("Todos los campos son obligatorios.");
+                return;
+            }
+            context.updateRoom(dataRoom,infoRoom.id)
+            resetForm()
+            onClose()
+        };
     if (!isOpen) return null;
 
     return (
@@ -38,40 +78,45 @@ const ModalRoom = ({ isOpen, onClose, isEditing, infoRoom }) => {
                 <input
                     type="text"
                     placeholder="Nombre"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={dataRoom.name}
+                    onChange={handleInfo}
+                    name="name"
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
                     type="number"
                     placeholder="Cantidad de personas"
-                    value={cantidad}
-                    onChange={(e) => setCantidad(e.target.value)}
+                    value={dataRoom.quantity}
+                    onChange={handleInfo}
+                    name="quantity"
                     className="w-full p-2 mb-3 border rounded"
                 />
                 <input
                     type="number"
                     placeholder="Precio"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    value={dataRoom.price}
+                    onChange={handleInfo}
+                    name="price"
                     className="w-full p-2 mb-4 border rounded"
                 />
-                 <input
-                    type="file"
+                <input
+                    type="text"
                     placeholder="Imagen"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
+                    value={dataRoom.image}
+                    onChange={handleInfo}
+                    name="image"
                     className="w-full p-2 mb-4 border rounded"
                 />
-               <textarea
+                <textarea
                     placeholder="Descripción"
                     className="border w-full mb-2 p-2"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={dataRoom.description}
+                    name="description"
+                    onChange={handleInfo}
                 />
                 <div className="flex justify-end gap-2">
                     <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancelar</button>
-                    <button  className="px-4 py-2 bg-blue-500 text-white rounded">Confirmar</button>
+                    <button onClick={isEditing ? updateRoom : saveRoom}  className="px-4 py-2 bg-blue-500 text-white rounded">{isEditing ? "Editar" : "Confirmar"}</button>
                 </div>
             </div>
         </div>

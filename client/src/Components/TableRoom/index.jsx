@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import ModalRoom from '../ModalRoom';
-
+import { useContext } from "react"
+import { InfoContext } from "../../Context"
 
 const TableRoom = () => {
+    
+    const context = useContext(InfoContext)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [infoRoom, setInfoRoom] = useState(null);
-
-    const rooms = 
-        { id: 1, name: 'John Doe', price: 100, cantidad: 4, image:'',description:'algo' }
-        // Otros usuarios
-    
 
     const openCreateModal = () => {
         setInfoRoom(null);
@@ -24,16 +22,6 @@ const TableRoom = () => {
         setIsEditing(true);
         setIsModalOpen(true);
     };
-
-    // const handleSave = (userData) => {
-    //     if (isEditing) {
-    //         // Lógica para actualizar el usuario
-    //         console.log('Editando usuario:', userData);
-    //     } else {
-    //         // Lógica para crear un nuevo usuario
-    //         console.log('Creando nuevo usuario:', userData);
-    //     }
-    // };
 
 
     return (
@@ -54,29 +42,34 @@ const TableRoom = () => {
                         <th className="px-4 py-2 border">Cantidad de personas</th>
                         <th className="px-4 py-2 border">Precio</th>
                         <th className="px-4 py-2 border">Imagen</th>
-                        <th className="px-4 py-2 border">Acciones</th>
+                        <th className="px-4 py-2 border">Descripción</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="text-center">
-                        <td className="px-4 py-2 border">cabaña 1</td>
-                        <td className="px-4 py-2 border">4</td>
-                        <td className="px-4 py-2 border">100 $</td>
-                        <td className="px-4 py-2 border">imagen</td>
-                        <td className="px-4 py-2 border">
-                            <button  onClick={() => openEditModal(rooms)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
-                            <button className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
-                        </td>
-                    </tr>
+                {context.dataRooms?.map((item, index) => (
+                        <tr  key={index} className="text-center">
+                            <td className="px-4 py-2 border">{item.name}</td>
+                            <td className="px-4 py-2 border">{item.quantity}</td>
+                            <td className="px-4 py-2 border">{item.price}</td>
+                            <td className="px-4 py-2 border">{item.image}</td>
+                            <td className="px-4 py-2 border">{item.description}</td>
+                            <td className="px-4 py-2 border">
+                                <button onClick={ () => openEditModal(item)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
+                                <button  onClick={ () => context.deleteRoom(item.id)} className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
+                            </td>
+                        </tr>
+
+                     ))
+
+                    }
 
                 </tbody>
             </table>
             <ModalRoom
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                // onSave={handleSave}
                 isEditing={isEditing}
                 infoRoom={infoRoom}
             />
