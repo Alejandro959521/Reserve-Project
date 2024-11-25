@@ -35,33 +35,33 @@ const TableRoom = () => {
                 </div>
             </div>
 
-            <table className="min-w-full bg-white border table-fixed ">
+            <table className="min-w-full bg-white border table-fixed  border-gray-400">
                 <thead>
                     <tr className="text-center">
-                        <th className="px-4 py-2 border w-1/6">Nombre</th>
-                        <th className="px-4 py-2 border w-1/12">Cantidad de personas</th>
-                        <th className="px-4 py-2 border w-1/12">Precio</th>
-                        <th className="px-4 py-2 border w-1/5">Imagen</th>
-                        <th className="px-4 py-2 border w-1/2">Descripción</th>
-                        <th className="px-4 py-2 border w-1/6">Acciones</th>
+                        <th className="px-4 py-2 border w-1/6  border-gray-400">Nombre</th>
+                        <th className="px-4 py-2 border w-1/12  border-gray-400">Cantidad de personas</th>
+                        <th className="px-4 py-2 border w-1/12 border-gray-400">Precio</th>
+                        <th className="px-4 py-2 border w-1/5 border-gray-400">Imagen</th>
+                        <th className="px-4 py-2 border w-1/2 border-gray-400">Descripción</th>
+                        <th className="px-4 py-2 border w-1/6 border-gray-400">Acciones</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     {context.dataRooms?.map((item, index) => (
                         <tr key={index} className="text-center">
-                            <td className="px-4 py-2 border">{item.name}</td>
-                            <td className="px-4 py-2 border">{item.quantity}</td>
-                            <td className="px-4 py-2 border">{item.price}</td>
-                            <td className="px-4 py-2 border">
+                            <td className="px-4 py-2 border border-gray-400">{item.name}</td>
+                            <td className="px-4 py-2 border border-gray-400">{item.quantity}</td>
+                            <td className="px-4 py-2 border border-gray-400">{item.price}</td>
+                            <td className="px-4 py-2 border border-gray-400">
                                 <img
                                     src={item.image}
                                     alt="Imagen"
                                     className="w-48 h-48 object-cover mx-auto"
                                 />
                             </td>
-                            <td className="px-4 py-2 border break-words">{item.description}</td>
-                            <td className="px-4 py-2 border">
+                            <td className="px-4 py-2 border break-words border-gray-400">{item.description}</td>
+                            <td className="px-4 py-2 border border-gray-400">
                                 <button onClick={() => openEditModal(item)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
                                 <button onClick={() => context.deleteRoom(item.id)} className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
                             </td>
