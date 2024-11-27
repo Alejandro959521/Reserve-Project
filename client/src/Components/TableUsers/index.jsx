@@ -38,13 +38,13 @@ const TableUsers = () => {
                 </div>
             </div>
 
-            <table className="min-w-full bg-white border">
+            <table className="min-w-full bg-white border border-gray-300">
                 <thead>
                     <tr className="text-center">
-                        <th className="px-4 py-2 border">Nombre y Apellido</th>
-                        <th className="px-4 py-2 border">Correo Electrónico</th>
-                        <th className="px-4 py-2 border">Número de telefono</th>
-                        <th className="px-4 py-2 border">Acciones</th>
+                        <th className="px-4 py-2 border border-gray-300">Nombre y Apellido</th>
+                        <th className="px-4 py-2 border border-gray-300">Correo Electrónico</th>
+                        <th className="px-4 py-2 border border-gray-300">Número de telefono</th>
+                        <th className="px-4 py-2 border border-gray-300">Acciones</th>
 
                     </tr>
                 </thead>
@@ -52,10 +52,10 @@ const TableUsers = () => {
 
                     {context.dataUsers?.map((item, index) => (
                         <tr  key={index} className="text-center">
-                            <td className="px-4 py-2 border">{item.name}</td>
-                            <td className="px-4 py-2 border">{item.email}</td>
-                            <td className="px-4 py-2 border">{item.phone}</td>
-                            <td className="px-4 py-2 border">
+                            <td className="px-4 py-2 border border-gray-300">{item.name}</td>
+                            <td className="px-4 py-2 border border-gray-300">{item.email}</td>
+                            <td className="px-4 py-2 border border-gray-300">{item.phone}</td>
+                            <td className="px-4 py-2 border border-gray-300">
                                 <button onClick={ () => openEditModal(item)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">Editar</button>
                                 <button  onClick={ () => context.deleteUser(item.id)} className="bg-red-600 text-white px-3 py-1 rounded">Eliminar</button>
                             </td>

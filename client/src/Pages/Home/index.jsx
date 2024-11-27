@@ -11,6 +11,7 @@ function Home() {
   const location = useLocation();
 
   useEffect(() => {
+
     if (location.hash === '#contactSection') {
       scroller.scrollTo('contactSection', {
         smooth: true,

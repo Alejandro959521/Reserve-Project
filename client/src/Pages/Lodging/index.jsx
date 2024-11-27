@@ -8,7 +8,6 @@ import { InfoContext } from "../../Context"
 function Loadging() {
     const navigate = useNavigate();
     const context = useContext(InfoContext)
-
     return (
         <>
             <div
@@ -25,7 +24,7 @@ function Loadging() {
 
             {context.dataRooms?.map((item, index) => (
                 <div key={index} className={`flex flex-col md:flex-row py-8 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
-                    {/* Información */}
+                    
                     <div className="flex justify-center flex-1 flex-col text-center pl-4 md:pl-8">
                         <p className="text-dark text-2xl md:text-4xl mb-4 font-bold">{item.name}</p>
                         <p className="text-dark text-xl md:text-xl">
@@ -41,7 +40,7 @@ function Loadging() {
                         </button>
                     </div>
 
-                    {/* Imagen */}
+                    
                     <div className="flex-1 flex justify-center mt-4 md:mt-0">
                         <img className="max-w-lg rounded-lg" src={item.image} alt={`Imagen de ${item.name}`} />
                     </div>

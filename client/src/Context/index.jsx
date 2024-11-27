@@ -8,11 +8,12 @@ export const InfoProvider = ({ children }) => {
 
   const [dataUsers, setdataUsers] = useState(null)
   const [dataRooms, setdataRooms] = useState(null)
-
+  const [dataReserves, setdataReserves] =  useState(null)
 
   useEffect(() => {
     getUser()
     getRoom()
+    getReserves()
   }, [])
 
   function getUser() {
@@ -25,6 +26,7 @@ export const InfoProvider = ({ children }) => {
       .then((result) => { setdataUsers(result); })
       .catch((err) => {
         setError(err.message);
+        
       })
 
   }
@@ -36,7 +38,21 @@ export const InfoProvider = ({ children }) => {
           throw new Error('Error al obtener los datos');
         } return response.json();
       })
-      .then((result) => { setdataRooms(result); })
+      .then((result) => { setdataRooms(result);  })
+      .catch((err) => {
+        setError(err.message);
+      })
+
+  }
+
+  function getReserves() {
+    fetch('http://localhost:8082/api/v1/reserves')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        } return response.json();
+      })
+      .then((result) => { setdataReserves(result); })
       .catch((err) => {
         setError(err.message);
       })
@@ -205,16 +221,41 @@ export const InfoProvider = ({ children }) => {
   };
 
 
+  function deleteReserve(reserveId) {
 
+    fetch(`http://localhost:8082/api/v1/reserves/${reserveId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("No se pudo eliminar la reserva");
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        console.log("Reserva eliminada");
+        alert("Reserva eliminada correctamente");
+        getRoom();
+      })
+      .catch((error) => {
+
+        console.log("Error al eliminar la reserva:", error.message);
+      })
+  };
 
 
   return (
     <InfoContext.Provider value={{
       dataUsers, setdataUsers,
       dataRooms, setdataRooms,
+      dataReserves, setdataReserves,
       getUser, createUser, updateUser, deleteUser,
-      getRoom, deleteRoom, createRoom, updateRoom
-
+      getRoom, deleteRoom, createRoom, updateRoom,
+      getReserves, deleteReserve
 
 
     }}>
