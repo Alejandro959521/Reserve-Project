@@ -113,6 +113,33 @@ export const InfoProvider = ({ children }) => {
       })
   };
 
+  function createReserve(reserveData) {
+
+    fetch("http://localhost:8082/api/v1/reserves", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reserveData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("No se pudo crear la reserva");
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        console.log("Reserva creada con exito");
+        alert("Reserva creada con exito");
+        getReserves();
+      })
+      .catch((error) => {
+
+        console.log("Error al crear Reserva :", error.message);
+      })
+  };
+
   function updateUser(userData, userId) {
 
     fetch(`http://localhost:8082/api/v1/users/${userId}`, {
@@ -164,6 +191,33 @@ export const InfoProvider = ({ children }) => {
       .catch((error) => {
 
         console.log("Error al actualizar la habitación", error.message);
+      })
+  };
+
+  function updateReserve(reserveData, reserveId) {
+
+    fetch(`http://localhost:8082/api/v1/reserves/${reserveId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reserveData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("No se pudo actualizar la reserva");
+          throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        console.log("Reserva actualizada");
+        alert("Reserva actualizada");
+        getReserves();
+      })
+      .catch((error) => {
+
+        console.log("Error al actualizar la reserva", error.message);
       })
   };
 
@@ -239,7 +293,7 @@ export const InfoProvider = ({ children }) => {
       .then(() => {
         console.log("Reserva eliminada");
         alert("Reserva eliminada correctamente");
-        getRoom();
+        getReserves();
       })
       .catch((error) => {
 
@@ -255,7 +309,7 @@ export const InfoProvider = ({ children }) => {
       dataReserves, setdataReserves,
       getUser, createUser, updateUser, deleteUser,
       getRoom, deleteRoom, createRoom, updateRoom,
-      getReserves, deleteReserve
+      getReserves, deleteReserve, createReserve, updateReserve
 
 
     }}>
