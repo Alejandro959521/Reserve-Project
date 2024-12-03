@@ -34,7 +34,7 @@ function Loadging() {
                         </p>
                         <button
                             className="mx-auto bg-[#003366] text-white border border-[#003366] rounded-md px-4 py-2 text-font-medium w-32 hover:bg-gray-200 hover:text-[#003366] transition duration-300 ease-in-out mt-4"
-                            onClick={() => navigate('/Reserva')}
+                            onClick={() => navigate('/Reserva', { state: { room: item } })}
                         >
                             Reservar
                         </button>

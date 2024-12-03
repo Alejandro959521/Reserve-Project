@@ -9,6 +9,7 @@ export const InfoProvider = ({ children }) => {
   const [dataUsers, setdataUsers] = useState(null)
   const [dataRooms, setdataRooms] = useState(null)
   const [dataReserves, setdataReserves] =  useState(null)
+  const [dataRoom, setdataRoom] = useState(null)
 
   useEffect(() => {
     getUser()
@@ -39,6 +40,20 @@ export const InfoProvider = ({ children }) => {
         } return response.json();
       })
       .then((result) => { setdataRooms(result);  })
+      .catch((err) => {
+        setError(err.message);
+      })
+
+  }
+
+  function getRoomId(roomId) {
+    fetch(`http://localhost:8082/api/v1/rooms/${roomId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        } return response.json();
+      })
+      .then((result) => { setdataRoom(result);  })
       .catch((err) => {
         setError(err.message);
       })
@@ -307,8 +322,9 @@ export const InfoProvider = ({ children }) => {
       dataUsers, setdataUsers,
       dataRooms, setdataRooms,
       dataReserves, setdataReserves,
+      dataRoom, setdataRoom,
       getUser, createUser, updateUser, deleteUser,
-      getRoom, deleteRoom, createRoom, updateRoom,
+      getRoom, deleteRoom, createRoom, updateRoom, getRoomId,
       getReserves, deleteReserve, createReserve, updateReserve
 
 

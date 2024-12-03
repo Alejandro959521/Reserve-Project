@@ -23,17 +23,6 @@ const TableReserves = () => {
         setIsModalOpen(true);
     };
 
-    // const handleSave = (userData) => {
-    //     if (isEditing) {
-    //         // Lógica para actualizar el usuario
-    //         console.log('Editando usuario:', userData);
-    //     } else {
-    //         // Lógica para crear un nuevo usuario
-    //         console.log('Creando nuevo usuario:', userData);
-    //     }
-    // };
-
-
 
     return (
         <div className="p-5 flex-1">
