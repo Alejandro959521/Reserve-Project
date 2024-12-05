@@ -10,23 +10,38 @@ function PageReserve() {
 
     const context = useContext(InfoContext)
     const location = useLocation();
-    const item = location.state?.room;
+    const item = location.state?.room || {};
 
+    const precioPorDia =  item?.price || 0;
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [total, setTotal] = useState(0);
-    const precioPorDia = item.price;
+    const [dataReserve, setDataReserve] = useState({
+        userId: 2, 
+        roomId: item.id,
+        startDate: null,
+        endDate: null,
+        totalPay: 0,
+        comentary: ""
 
+    })
+
+    const [dataForm, setDataForm] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        
+    })
+ 
     function calculator ()  {
 
-        if (startDate && endDate) {
-            const Time = Math.abs(endDate - startDate);
+        if (dataReserve.startDate && dataReserve.endDate) {
+            const Time = Math.abs(dataReserve.endDate - dataReserve.startDate);
             
             const Days = Math.ceil(Time / (1000 * 60 * 60 * 24));
-            setTotal(Days * precioPorDia);
+            const newTotal = Days * precioPorDia;
+
+            setDataReserve((prev) => ({ ...prev, totalPay: newTotal }));
         } else {
-            setTotal(0);
+            setDataReserve((prev) => ({ ...prev, totalPay: 0 }));
         }
     }
 
@@ -35,19 +50,9 @@ function PageReserve() {
     useEffect(() => {
         calculator();
         context.getRoomId(item.id);
-    }, [startDate, endDate]);
+    }, [dataReserve.startDate, dataReserve.endDate]);
  
 
-    const [dataReserve, setDataReserve] = useState({
-        userId: 1, 
-        roomId: item.id,
-        startDate: null,
-        endDate: null,
-        totalPay: total,
-        comentary: "."
-
-    })
-   
     const reservedDates = context.dataRoom?.reserves?.flatMap((reserve) => {
         const dates = [];
         let currentDate = new Date(reserve.startDate);
@@ -59,14 +64,74 @@ function PageReserve() {
         }
     
         return dates;
-    });
+    })|| [];
+
 
     const handleInfo = (event) => {
-        setDataReserve({
-            ...dataReserve,
+        setDataForm({
+            ...dataForm,
             [event.target.name]: event.target.value
         })
+    } 
+
+    const handleInfo2 = (event) => {
+        const { name, value } = event.target;
+
+        setDataReserve((prev) => ({
+            ...prev,
+            [name]: name === "comentary" && !value.trim() ? "." : value, 
+        }));
+    } 
+
+    const handleDate = (field,value) => {
+        setDataReserve((prev) => ({
+            ...prev,
+            [field]: value,
+          }));
     }
+
+    const resetForm = () => {
+        setDataReserve({
+            userId: 2, 
+        roomId: item.id,
+        startDate: null,
+        endDate: null,
+        totalPay: 0,
+        comentary: ""
+        });
+        setDataForm({
+            name: "",
+        email: "",
+        phone: "",
+        });
+
+    }
+ const createReserve = () => {
+
+    if (!dataReserve.comentary.trim()) {
+        setDataReserve((prev) => ({
+            ...prev,
+            comentary: ".",
+        }));
+    }
+    if (
+        !dataReserve.userId ||
+        !dataReserve.roomId ||
+        !dataReserve.startDate ||
+        !dataReserve.endDate ||
+        !dataReserve.totalPay ||
+        !dataForm.name ||
+        !dataForm.email ||
+        !dataForm.phone
+    ) {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+    context.createReserve(dataReserve)
+    resetForm();
+    
+
+ }
 
     return (
         <> 
@@ -77,16 +142,16 @@ function PageReserve() {
                 <div className="flex flex-col items-center">
                     <label className="text-sm font-medium mb-2">Fecha de Entrada</label>
                     <DatePicker
-                        selected={startDate}
+                        selected={dataReserve.startDate}
                         onChange={(date) => {
-                            setStartDate(date);
-                            if (endDate && date >= endDate) {
-                                setEndDate(null);
+                            handleDate("startDate", date);
+                            if (dataReserve.endDate && date >= dataReserve.endDate) {
+                              handleDate("endDate", null);
                             }
                         }}
                         selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
+                        startDate={dataReserve.startDate}
+                        endDate={dataReserve.endDate}
                         minDate={new Date()}
                         excludeDates={reservedDates}
                         inline
@@ -97,15 +162,21 @@ function PageReserve() {
                 <div className="flex flex-col items-center">
                     <label className="text-sm font-medium mb-2">Fecha de Salida</label>
                     <DatePicker
-                        selected={endDate}
-                        onChange={(date) => setEndDate(date)}
+                        selected={dataReserve.endDate}
+                        onChange={(date) => handleDate("endDate", date)}
                         selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate ? new Date(startDate).setDate(startDate.getDate() + 1) : new Date()}
+                        startDate={dataReserve.startDate}
+                        endDate={dataReserve.endDate}
+                        minDate={
+                            dataReserve.startDate
+                              ? new Date(dataReserve.startDate).setDate(
+                                  new Date(dataReserve.startDate).getDate() + 1
+                                )
+                              : new Date()
+                          }
                         inline
                         excludeDates={reservedDates}
-                        disabled={!startDate}
+                        disabled={!dataReserve.startDate}
                     />
                 </div>
 
@@ -114,25 +185,30 @@ function PageReserve() {
                     <label className="text-lg font-semibold mb-4">Fechas seleccionadas</label>
                     <input
                         type="text"
-                        value={startDate ? startDate.toLocaleDateString() : ''}
+                        value={
+                            dataReserve.startDate
+                              ? new Date(dataReserve.startDate).toLocaleDateString()
+                              : ""
+                          }
                         readOnly
                         className="p-2 mb-2 border border-black rounded-md text-center w-40 placeholder-gray-600"
                         placeholder="Entrada"
-                        onChange={handleInfo}
-                        name="startDate"
+                     
                     />
                     <input
                         type="text"
-                        value={endDate ? endDate.toLocaleDateString() : ''}
+                        value={
+                            dataReserve.endDate
+                              ? new Date(dataReserve.endDate).toLocaleDateString()
+                              : ""
+                          }
                         readOnly
                         className="p-2 mb-4 border border-black rounded-md text-center w-40 placeholder-gray-600"
                         placeholder="Salida"
-                        onChange={handleInfo}
-                        name="endDate"
 
                     />
                     <p className="text-lg font-semibold">
-                        Total a pagar: <span className="text-[#003366]">${total}</span>
+                        Total a pagar: <span className="text-[#003366]">${dataReserve.totalPay}</span>
                     </p>
                 </div>
             </div>
@@ -143,12 +219,18 @@ function PageReserve() {
                     type="text"
                     placeholder="Nombre"
                     className="placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366]"
+                    value={dataForm.name}
+                    onChange={handleInfo}
+                    name="name"
                     required
                 />
                 <input
                     type="email"
                     placeholder="Correo"
                     className="placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366]"
+                    value={dataForm.email}
+                    onChange={handleInfo}
+                    name="email"
                     required
                 />
                 <input
@@ -156,13 +238,20 @@ function PageReserve() {
                     placeholder="Teléfono"
                     className=" placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366]"
                     required
+                    value={dataForm.phone}
+                    onChange={handleInfo}
+                    name="phone"
                 />
                 <textarea
                     placeholder="Comentarios adicionales"
                     className="placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366] resize-none"
                     rows="4"
+                    value={dataReserve.comentary}
+                    onChange={handleInfo2}
+                    name="comentary"
                 ></textarea>
                 <button
+                    onClick={createReserve}
                     type="submit"
                     className="bg-[#003366] text-white rounded-md px-6 py-2 mt-4 font-medium w-full hover:bg-gray-200 hover:text-[#003366] border border-[#003366] transition duration-300 ease-in-out"
                 >
