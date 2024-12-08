@@ -48,8 +48,10 @@ function PageReserve() {
     // Calcular el total al seleccionar ambas fechas
     useEffect(() => {
         calculator();
-        context.getRoomId(item.id);
-    }, [dataReserve.startDate, dataReserve.endDate]);
+        if (item.id) {
+            context.getRoomId(item.id);
+        }
+    }, [dataReserve.startDate, dataReserve.endDate,item.id]);
  
 
 
@@ -78,9 +80,10 @@ function PageReserve() {
 
 const handleInfo2 = (event) => {
         const { name, value } = event.target;
+        const newValue = value.trim() || ".";
         setDataReserve((prev) => ({
             ...prev,
-            [name]: name === "comentary" && !value.trim() ? "." : value, 
+            [name]: newValue,
         }));
     } 
     const handleDate = (field,value) => {
@@ -104,13 +107,12 @@ const handleInfo2 = (event) => {
         phone: "",
         });
     }
- const createReserve = () => {
-    if (!dataReserve.comentary.trim()) {
-        setDataReserve((prev) => ({
-            ...prev,
-            comentary: ".",
-        }));
-    }
+ const createReserve = (event) => {
+    event.preventDefault();
+    const reserveData = {
+        ...dataReserve,
+        comentary: dataReserve.comentary.trim() || ".", 
+    };
     if (
         !dataReserve.userId ||
         !dataReserve.roomId ||
@@ -124,9 +126,8 @@ const handleInfo2 = (event) => {
         alert("Todos los campos son obligatorios.");
         return;
     }
-    context.createReserve(dataReserve)
+    context.createReserve(reserveData)
     resetForm();
-    
  }
 
     return (
@@ -209,7 +210,7 @@ const handleInfo2 = (event) => {
             </div>
 
             {/* Formulario de información adicional */}
-            <form className="w-full max-w-md mt-8 space-y-4">
+            <form className="w-full max-w-md mt-8 space-y-4" onSubmit={createReserve}>
                 <input
                     type="text"
                     placeholder="Nombre"
@@ -246,7 +247,6 @@ const handleInfo2 = (event) => {
                     name="comentary"
                 ></textarea>
                 <button
-                onClick={createReserve}
                     type="submit"
                     className="bg-[#003366] text-white rounded-md px-6 py-2 mt-4 font-medium w-full hover:bg-gray-200 hover:text-[#003366] border border-[#003366] transition duration-300 ease-in-out"
                 >
