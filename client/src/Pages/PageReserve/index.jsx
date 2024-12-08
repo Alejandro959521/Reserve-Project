@@ -13,7 +13,7 @@ function PageReserve() {
     const item = location.state?.room || {};
 
     const precioPorDia =  item?.price || 0;
-
+    
     const [dataReserve, setDataReserve] = useState({
         userId: 2, 
         roomId: item.id,
@@ -23,14 +23,13 @@ function PageReserve() {
         comentary: ""
 
     })
-
     const [dataForm, setDataForm] = useState({
         name: "",
         email: "",
         phone: "",
         
     })
- 
+
     function calculator ()  {
 
         if (dataReserve.startDate && dataReserve.endDate) {
@@ -39,7 +38,7 @@ function PageReserve() {
             const Days = Math.ceil(Time / (1000 * 60 * 60 * 24));
             const newTotal = Days * precioPorDia;
 
-            setDataReserve((prev) => ({ ...prev, totalPay: newTotal }));
+         setDataReserve((prev) => ({ ...prev, totalPay: newTotal }));
         } else {
             setDataReserve((prev) => ({ ...prev, totalPay: 0 }));
         }
@@ -53,6 +52,8 @@ function PageReserve() {
     }, [dataReserve.startDate, dataReserve.endDate]);
  
 
+
+   
     const reservedDates = context.dataRoom?.reserves?.flatMap((reserve) => {
         const dates = [];
         let currentDate = new Date(reserve.startDate);
@@ -66,30 +67,28 @@ function PageReserve() {
         return dates;
     })|| [];
 
-
     const handleInfo = (event) => {
         setDataForm({
             ...dataForm,
             [event.target.name]: event.target.value
         })
-    } 
+    }
 
-    const handleInfo2 = (event) => {
+
+
+const handleInfo2 = (event) => {
         const { name, value } = event.target;
-
         setDataReserve((prev) => ({
             ...prev,
             [name]: name === "comentary" && !value.trim() ? "." : value, 
         }));
     } 
-
     const handleDate = (field,value) => {
         setDataReserve((prev) => ({
             ...prev,
             [field]: value,
           }));
     }
-
     const resetForm = () => {
         setDataReserve({
             userId: 2, 
@@ -104,10 +103,8 @@ function PageReserve() {
         email: "",
         phone: "",
         });
-
     }
  const createReserve = () => {
-
     if (!dataReserve.comentary.trim()) {
         setDataReserve((prev) => ({
             ...prev,
@@ -130,7 +127,6 @@ function PageReserve() {
     context.createReserve(dataReserve)
     resetForm();
     
-
  }
 
     return (
@@ -167,13 +163,11 @@ function PageReserve() {
                         selectsEnd
                         startDate={dataReserve.startDate}
                         endDate={dataReserve.endDate}
-                        minDate={
-                            dataReserve.startDate
-                              ? new Date(dataReserve.startDate).setDate(
-                                  new Date(dataReserve.startDate).getDate() + 1
-                                )
-                              : new Date()
-                          }
+                        minDate={ dataReserve.startDate
+                            ? new Date(dataReserve.startDate).setDate(
+                                new Date(dataReserve.startDate).getDate() + 1
+                              )
+                            : new Date()}
                         inline
                         excludeDates={reservedDates}
                         disabled={!dataReserve.startDate}
@@ -205,6 +199,7 @@ function PageReserve() {
                         readOnly
                         className="p-2 mb-4 border border-black rounded-md text-center w-40 placeholder-gray-600"
                         placeholder="Salida"
+                      
 
                     />
                     <p className="text-lg font-semibold">
@@ -219,19 +214,19 @@ function PageReserve() {
                     type="text"
                     placeholder="Nombre"
                     className="placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366]"
+                    required
                     value={dataForm.name}
                     onChange={handleInfo}
                     name="name"
-                    required
                 />
                 <input
                     type="email"
                     placeholder="Correo"
                     className="placeholder-gray-600 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#003366]"
+                    required
                     value={dataForm.email}
                     onChange={handleInfo}
                     name="email"
-                    required
                 />
                 <input
                     type="tel"
@@ -251,7 +246,7 @@ function PageReserve() {
                     name="comentary"
                 ></textarea>
                 <button
-                    onClick={createReserve}
+                onClick={createReserve}
                     type="submit"
                     className="bg-[#003366] text-white rounded-md px-6 py-2 mt-4 font-medium w-full hover:bg-gray-200 hover:text-[#003366] border border-[#003366] transition duration-300 ease-in-out"
                 >
