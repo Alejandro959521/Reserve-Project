@@ -1,9 +1,9 @@
 const express = require("express");
 const routerApi = require('./routes')
+const { checkApiKey } = require('./middlewares/authHandler')
 
 const app = express();
 const cors = require("cors");
-
 
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/errorHandler');
 
@@ -25,13 +25,13 @@ const options = {
 app.use(cors(options));
 
 
-
 routerApi(app);
 
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
+require('./utils/auth');
 
 
 
