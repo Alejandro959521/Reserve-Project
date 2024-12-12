@@ -1,10 +1,13 @@
 
 const express = require('express');
+const passport = require('passport');
 
 const router = express.Router();
 
 const RoomServices = require('./../services/roomService');
 const validatorHandler = require('./../middlewares/validatorHandler');
+const { checkAdminRole }= require('./../middlewares/authHandler');
+
 const { createRoomSchema, updateRoomSchema, getRoomSchema } = require('./../schema/roomSchema');
 
 
@@ -33,6 +36,9 @@ router.get('/:id',
 );
 
 router.post('/',
+
+  passport.authenticate('jwt',{session:false}),
+  checkAdminRole,
   validatorHandler(createRoomSchema,'body'),
   async (req, res, next) => {
     try {
