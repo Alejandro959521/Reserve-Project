@@ -51,7 +51,7 @@ function PageReserve() {
         if (item.id) {
             context.getRoomId(item.id);
         }
-    }, [dataReserve.startDate, dataReserve.endDate,item.id]);
+    }, [dataReserve.startDate, dataReserve.endDate, item.id]);
  
 
 

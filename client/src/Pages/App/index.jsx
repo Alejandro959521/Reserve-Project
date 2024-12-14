@@ -48,7 +48,6 @@ const App = () => {
   const ChangeToSingUp = () => {
     onCloseLogin();
     setShowSignUp(true)
-    setShowLoginForm(false);
     
   }
 
