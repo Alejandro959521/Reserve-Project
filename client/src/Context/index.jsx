@@ -4,8 +4,8 @@ export const InfoContext = createContext()
 
 export const InfoProvider = ({ children }) => {
 
-
-
+  const [dataUser, setdataUser] = useState(null)
+  const [dataToken, setdataToken] = useState(localStorage.getItem("token") ?? null)
   const [dataUsers, setdataUsers] = useState(null)
   const [dataRooms, setdataRooms] = useState(null)
   const [dataReserves, setdataReserves] =  useState(null)
@@ -15,7 +15,49 @@ export const InfoProvider = ({ children }) => {
     getUser()
     getRoom()
     getReserves()
+    setdataToken(localStorage.getItem("token"))
   }, [])
+
+
+  function logOut () {
+    
+      localStorage.removeItem("token");
+      setdataToken(null)
+      
+  }
+
+  function createToken(data) {
+    fetch("http://localhost:8082/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          
+          alert("Datos erroneos");
+         
+          throw new Error(`Error en la solicitud: ${response.status}`);
+         
+        }     
+        return response.json();
+      })
+      .then((body) => { 
+        setdataUser(body.user)
+        setdataToken(body.token)       
+        localStorage.setItem("token", body.token)
+        alert("Bienvenido");
+        
+      })
+      .catch((error) => {
+
+        console.log("Error al crear token:", error.message);
+        
+      })
+
+  }
 
   function getUser() {
     fetch('http://localhost:8082/api/v1/users')
@@ -85,8 +127,10 @@ export const InfoProvider = ({ children }) => {
     })
       .then((response) => {
         if (!response.ok) {
+          
           alert("No se pudo crear el usuario");
           throw new Error(`Error en la solicitud: ${response.status}`);
+          
         }
         return response.json();
       })
@@ -325,9 +369,10 @@ export const InfoProvider = ({ children }) => {
       dataRoom, setdataRoom,
       getUser, createUser, updateUser, deleteUser,
       getRoom, deleteRoom, createRoom, updateRoom, getRoomId,
-      getReserves, deleteReserve, createReserve, updateReserve
-
-
+      getReserves, deleteReserve, createReserve, updateReserve,
+      createToken, logOut,
+      dataUser, setdataUser,
+      dataToken, setdataToken
     }}>
       {children}
     </InfoContext.Provider>
