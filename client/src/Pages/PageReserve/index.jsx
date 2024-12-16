@@ -15,7 +15,7 @@ function PageReserve() {
     const precioPorDia =  item?.price || 0;
     
     const [dataReserve, setDataReserve] = useState({
-        userId: 2, 
+        userId: context.dataUser?.id, 
         roomId: item.id,
         startDate: null,
         endDate: null,
@@ -94,7 +94,7 @@ const handleInfo2 = (event) => {
     }
     const resetForm = () => {
         setDataReserve({
-            userId: 2, 
+            userId: context.dataUser?.id, 
         roomId: item.id,
         startDate: null,
         endDate: null,
@@ -109,6 +109,7 @@ const handleInfo2 = (event) => {
     }
  const createReserve = (event) => {
     event.preventDefault();
+ 
     const reserveData = {
         ...dataReserve,
         comentary: dataReserve.comentary.trim() || ".", 
@@ -126,6 +127,10 @@ const handleInfo2 = (event) => {
         alert("Todos los campos son obligatorios.");
         return;
     }
+    if(!context.dataToken) {
+        alert("Tiene que logearse para poder reservar");
+         return;
+        }
     context.createReserve(reserveData)
     resetForm();
  }

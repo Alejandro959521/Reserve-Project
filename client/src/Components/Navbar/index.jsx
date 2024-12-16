@@ -57,27 +57,52 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                         Hospedajes
                     </NavLink>
                 </li>
-                <li>
+                {context.dataToken && context.dataUser?.role == 'admin' ? (
+                    <li>
                     <NavLink
-                        to='/servicios'
+                        to='/Usuarios'
                         className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white hover:text-[#DAA520]'}
                     >
-                        Servicios
+                        Admininistración 
                     </NavLink>
                 </li>
+                ):( <></> )} 
+             
                 {context.dataToken ? (
                     // Si el usuario está logeado, mostramos su nombre y el botón "Cerrar sesión"
-                    <>
-                        <li className="text-white">Bienvenido, {context.dataUser.name}</li>
-                        <li>
-                            <button
-                                onClick={context.logOut}
-                                className="text-white hover:text-red-500"
+                    <li className="relative">
+                        <button
+                            onClick={toggleDropdown}
+                            className="flex items-center text-white focus:outline-none hover:text-[#DAA520]"
+                        >
+                            Hola {context.dataUser?.name || "Invitado"}
+                            <svg
+                                className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"
+                                    }`}
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
                             >
-                                Cerrar Sesión
-                            </button>
-                        </li>
-                    </>
+                                <path
+                                    fillRule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </button>
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                                <button
+                                    onClick={context.logOut}
+                                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-400"
+                                >
+                                    Cerrar sesión
+                                </button>
+                            </div>
+                        )}
+                    </li>
+                   
+
                 ) : (
                     <li className="relative">
                         <button

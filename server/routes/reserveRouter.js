@@ -6,11 +6,14 @@ const router = express.Router();
 const ReserveServices = require('./../services/reserveService');
 const validatorHandler = require('./../middlewares/validatorHandler');
 const { createReserveSchema, updateReserveSchema, getReserveSchema } = require('./../schema/reserveSchema');
+const { checkAdminRole }= require('./../middlewares/authHandler');
+const passport = require('passport');
 
 
 const service = new ReserveServices();
 
-router.get("/", async (req, res, next) => {
+router.get("/",
+  async (req, res, next) => {
   try {
     const reserves = await service.find();
     res.json(reserves);
@@ -33,6 +36,8 @@ router.get('/:id',
 );
 
 router.post('/',
+    passport.authenticate('jwt',{session:false}),
+
   validatorHandler(createReserveSchema,'body'),
   async (req, res, next) => {
     try {
@@ -46,6 +51,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+    passport.authenticate('jwt',{session:false}),
+    checkAdminRole,
   validatorHandler(getReserveSchema, 'params'),
   validatorHandler(updateReserveSchema, 'body'),
   async (req, res, next) => {
@@ -61,6 +68,8 @@ router.patch('/:id',
   });
 
   router.delete('/:id',
+      passport.authenticate('jwt',{session:false}),
+      checkAdminRole,
     validatorHandler(getReserveSchema, 'params'),
     async (req, res, next) => {
     try {

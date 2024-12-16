@@ -52,6 +52,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+  passport.authenticate('jwt',{session:false}),
+  checkAdminRole,
   validatorHandler(getRoomSchema, 'params'),
   validatorHandler(updateRoomSchema, 'body'),
   async (req, res, next) => {
@@ -67,6 +69,8 @@ router.patch('/:id',
   });
 
   router.delete('/:id',
+    passport.authenticate('jwt',{session:false}),
+    checkAdminRole,
     validatorHandler(getRoomSchema, 'params'),
     async (req, res, next) => {
     try {

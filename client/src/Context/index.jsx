@@ -48,6 +48,7 @@ export const InfoProvider = ({ children }) => {
         setdataUser(body.user)
         setdataToken(body.token)       
         localStorage.setItem("token", body.token)
+        console.log(body.token)
         alert("Bienvenido");
         
       })
@@ -122,6 +123,7 @@ export const InfoProvider = ({ children }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(userData),
     })
@@ -151,6 +153,7 @@ export const InfoProvider = ({ children }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(roomData),
     })
@@ -178,6 +181,7 @@ export const InfoProvider = ({ children }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(reserveData),
     })
@@ -205,6 +209,7 @@ export const InfoProvider = ({ children }) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(userData),
     })
@@ -232,6 +237,7 @@ export const InfoProvider = ({ children }) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(roomData),
     })
@@ -259,6 +265,7 @@ export const InfoProvider = ({ children }) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
       body: JSON.stringify(reserveData),
     })
@@ -286,6 +293,7 @@ export const InfoProvider = ({ children }) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
     })
       .then((response) => {
@@ -313,6 +321,7 @@ export const InfoProvider = ({ children }) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
     })
       .then((response) => {
@@ -340,6 +349,7 @@ export const InfoProvider = ({ children }) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${dataToken}`,
       },
     })
       .then((response) => {

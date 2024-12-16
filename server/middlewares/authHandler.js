@@ -16,7 +16,7 @@ function checkApiKey(req, res, next) {
 function checkAdminRole (req, res, next) {
 
   const user = req.user;
-  console.log("aqui user",user)
+
   if (user.role === 'admin'){
     next();
   } else {

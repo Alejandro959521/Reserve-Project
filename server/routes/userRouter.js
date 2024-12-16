@@ -5,7 +5,8 @@ const router = express.Router();
 const UserServices = require('./../services/userService');
 const validatorHandler = require('./../middlewares/validatorHandler');
 const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schema/userSchema');
-
+const { checkAdminRole }= require('./../middlewares/authHandler');
+const passport = require('passport');
 
 const service = new UserServices();
 
@@ -32,6 +33,8 @@ router.get('/:id',
 );
 
 router.post('/',
+    passport.authenticate('jwt',{session:false}),
+    checkAdminRole,
   validatorHandler(createUserSchema,'body'),
   async (req, res, next) => {
     try {
@@ -45,6 +48,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+    passport.authenticate('jwt',{session:false}),
+    checkAdminRole,
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateUserSchema, 'body'),
   async (req, res, next) => {
@@ -60,6 +65,8 @@ router.patch('/:id',
   });
 
   router.delete('/:id',
+      passport.authenticate('jwt',{session:false}),
+      checkAdminRole,
     validatorHandler(getUserSchema, 'params'),
     async (req, res, next) => {
     try {
