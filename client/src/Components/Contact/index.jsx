@@ -32,8 +32,8 @@ const Contact = () => {
 				<div className=" p-6 text-center max-w-xs">
 					<i className="fas fa-map-marker-alt text-4xl mb-4"></i>
 					<h3 className="text-2xl font-bold mb-2 ">DIRECCIÓN </h3>
-					<p className="text-lg">SoHo 94 Broadway St</p>
-					<p className="text-lg">Nueva York, NY 1001</p>
+					<p className="text-lg">Merida, Aricagua</p>
+					<p className="text-lg">Venezuela</p>
 				</div>
 				<div className=" p-6 text-center max-w-xs">
 					<i className="fas fa-phone-alt text-4xl mb-4"></i>
@@ -44,7 +44,7 @@ const Contact = () => {
 				<div className="d p-6 text-center  max-w-xs">
 					<i className="fas fa-envelope text-4xl mb-4"></i>
 					<h3 className="text-2xl font-bold mb-2">CORREO ELECTRÓNICO</h3>
-					<p className="text-lg">CumbresAltas@foto.com</p>
+					<p className="text-lg">CumbresAltas@gmail.com</p>
 				</div> 
 			</div> 
 
@@ -54,7 +54,7 @@ const Contact = () => {
 				<form onSubmit={handleSubmit} ref={refForm} className="flex-1 space-y-6 m-2 pl-8">
 					<div>
 						<label className="block  text-white mb-2  text-3xl" name='email' htmlFor="email">Email</label>
-						<input name='email' className=" text-xl md:text-2xl w-full p-2 custom-input rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-stone-500" required  type="email" placeholder="Ej:Enfococuadros@gmail.com" />
+						<input name='email' className=" text-xl md:text-2xl w-full p-2 custom-input rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-stone-500" required  type="email" placeholder="Ej:CumbresAltas@gmail.com" />
 					</div>
 					<div>
 						<label className="block text-white mb-2 text-3xl" htmlFor="name">Nombre</label>
