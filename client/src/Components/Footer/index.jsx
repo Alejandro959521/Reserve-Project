@@ -5,36 +5,75 @@ import logo from "./../../../img/logo.png"
 const Footer = () => {
 
     return (
-        <footer className="mx-auto text-black my-auto py-10" style={{ backgroundColor: `#99CCFF` }}>
+        <footer className=" text-black py-10" style={{ backgroundColor: `#99CCFF` }}>
+            <div className="container mx-auto px-4">
+                <div className="flex flex-wrap justify-between items-center gap-8">
 
-            <div className="flex justify-around  items-center flex-col md:flex-row py-4">
-
-                <div className="text-left ">
-                    <img className="w-24 h-24 md:w-48 md:h-48" src={logo} />
-
-                </div>
-
-                <div className=" py-2 text-center md:text-left">
-                    <p className="text-3xl font-bold mb-8">Acerca de :</p>
-                    <p className="text-2xl mb-8">fotografía de alta calidad y diseño <br />al alcance de tu habitación</p>
-
-                </div>
-
-                <div className=" text-left ">
-
-                    <p className="text-3xl font-bold py-2">Contacto:</p>
-                    <p className="text-2xl py-2">CumbresAltas@gmail.com <br /> +564123434567, Buenos Aires <br /> Argentina</p>
-
-                    <div className="flex justify-start space-x-4  py-2 ">
-                        <a href="https://www.google.es" target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faTwitter} className=" icong hover:text-gray-500" /></a>
-                        <a href="https://www.google.es" target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faInstagram} className=" icong hover:text-gray-500" /></a>
-                        <a href="https://www.google.es" target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faFacebook} className=" icong hover:text-gray-500" /></a>
-                        <a href="https://www.google.es" target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faLinkedin} className=" icong hover:text-gray-500" /></a>
-
+                    <div className="w-full md:w-auto flex justify-center md:justify-start">
+                        <img
+                            className="w-24 h-24 md:w-36 md:h-36"
+                            src={logo}
+                            alt="Logo"
+                        />
                     </div>
 
-                </div>
+                    <div className="w-full md:w-1/3 text-center md:text-left">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Acerca de:</h3>
+                        <p className="text-base md:text-lg leading-relaxed">
+                            Fotografía de alta calidad y diseño al alcance de tu habitación.
+                        </p>
+                    </div>
 
+                    <div className="w-full md:w-1/3 text-center md:text-left">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Contacto:</h3>
+                        <p className="text-base md:text-lg mb-2">
+                            <strong>Email:</strong> CumbresAltas@gmail.com
+                        </p>
+                        <p className="text-base md:text-lg mb-2">
+                            <strong>Teléfono:</strong> +564123434567
+                        </p>
+                        <p className="text-base md:text-lg mb-2">
+                            <strong>Ubicación:</strong> Buenos Aires, Argentina
+                        </p>
+                    </div>
+
+                    <div className="w-full flex justify-center space-x-4">
+                        <a
+                            href="https://www.twitter.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-gray-200 transition duration-300"
+                        >
+                            <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
+                        </a>
+                        <a
+                            href="https://www.instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-gray-200 transition duration-300"
+                        >
+                            <FontAwesomeIcon icon={faInstagram} className="text-2xl" />
+                        </a>
+                        <a
+                            href="https://www.facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-gray-200 transition duration-300"
+                        >
+                            <FontAwesomeIcon icon={faFacebook} className="text-2xl" />
+                        </a>
+                        <a
+                            href="https://www.linkedin.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-gray-200 transition duration-300"
+                        >
+                            <FontAwesomeIcon icon={faLinkedin} className="text-2xl" />
+                        </a>
+                    </div>
+
+
+                </div>
             </div>
         </footer>
     )

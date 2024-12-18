@@ -13,14 +13,14 @@ import { useState, useEffect } from "react";
 
 const imgRandom = () => {
 
-    const listImage = [img5, img3, img9, ,img10, img11, img12]
+    const listImage = [img5, img3, img9, img10, img11, img12]
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => {
-                // Generar un índice aleatorio diferente al índice actual
+
                 let newIndex;
                 do {
                     newIndex = Math.floor(Math.random() * listImage.length);
@@ -30,7 +30,7 @@ const imgRandom = () => {
             });
         }, 4000);
 
-        // Limpiar el intervalo cuando el componente se desmonta
+        console.log("aqui intervalId", currentImageIndex)
         return () => clearInterval(intervalId);
 
     }, [listImage, 4000]);
@@ -43,11 +43,11 @@ const imgRandom = () => {
                 alt="Fondo de habitaciones"
                 className="absolute top-0 left-0 w-full h-full object-fill"
             />
-            <div className="relative flex flex-col items-center justify-center h-full">
-                <p className="text-center text-4xl md:text-6xl mt-40 font-extrabold drop-shadow-md">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-50 text-white">
+                <h1 className="text-center font-extrabold text-4xl md:text-6xl lg:text-7xl drop-shadow-md">
                     Explora nuestras habitaciones
-                </p>
-                <p className="text-xl md:text-4xl text-center mt-20 font-extrabold drop-shadow-sm">
+                </h1>
+                <p className="mt-10 text-center text-xl md:text-3xl lg:text-4xl drop-shadow-sm">
                     Adecua tu vida en un solo espacio
                 </p>
             </div>

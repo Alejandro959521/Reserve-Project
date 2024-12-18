@@ -16,15 +16,46 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
     };
 
     return (
-        <nav className="bg-[#003366] flex justify-around items-center z-10 top-0 w-full p-0 m-0 text-lg">
+        <nav className="bg-[#003366] flex items-center justify-between w-full p-4 text-lg z-10">
+            {/* Logo */}
             <div className="flex items-center">
-                <img src={logo} alt="Logo" className="h-36" /> {/* Ajusta la altura del logo según sea necesario */}
+                <img src={logo} alt="Logo" className="h-36" />
             </div>
-            <ul className="flex items-center gap-x-16">
+
+            {/* Menú hamburguesa para móviles */}
+            <button
+                className="md:hidden text-white focus:outline-none"
+                onClick={toggleDropdown}
+            >
+                <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
+                </svg>
+            </button>
+
+            {/* Lista de enlaces */}
+            <ul
+                className={`flex-col md:flex-row md:flex items-center gap-x-24 absolute md:static bg-[#003366] w-full md:w-auto transition-all duration-300 pr-8 ${isDropdownOpen ? "top-20 left-0" : "top-[-500px] left-0"
+                    }`}
+            >
                 <li className="text-lg">
                     <NavLink
-                        to='/'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white  hover:text-[#DAA520]'}
+                        to="/"
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-[#DAA520] border-b-2 border-[#DAA520] font-semibold"
+                                : "text-white hover:text-[#DAA520]"
+                        }
                     >
                         Inicio
                     </NavLink>
@@ -33,7 +64,9 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                     <NavLink
                         to="/#contactSection"
                         className={({ isActive }) =>
-                            isActive ? 'text-white hover:text-[#DAA520]' : 'text-white hover:text-[#DAA520]'
+                            isActive
+                                ? "text-white hover:text-[#DAA520]"
+                                : "text-white hover:text-[#DAA520]"
                         }
                     >
                         Contáctame
@@ -43,7 +76,9 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                     <NavLink
                         to="/#aboutSection"
                         className={({ isActive }) =>
-                            isActive ? 'text-white hover:text-[#DAA520]' : 'text-white hover:text-[#DAA520]'
+                            isActive
+                                ? "text-white hover:text-[#DAA520]"
+                                : "text-white hover:text-[#DAA520]"
                         }
                     >
                         Quiénes Somos
@@ -51,25 +86,31 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                 </li>
                 <li>
                     <NavLink
-                        to='/hospedajes'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white hover:text-[#DAA520]'}
+                        to="/hospedajes"
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-[#DAA520] border-b-2 border-[#DAA520] font-semibold"
+                                : "text-white hover:text-[#DAA520]"
+                        }
                     >
                         Hospedajes
                     </NavLink>
                 </li>
-                {context.dataToken && context.dataUser?.role == 'admin' ? (
+                {context.dataToken && context.dataUser?.role === "admin" && (
                     <li>
-                    <NavLink
-                        to='/Usuarios'
-                        className={({ isActive }) => isActive ? 'text-[#DAA520] border-b-2 border-[#DAA520] font-semibold ' : 'text-white hover:text-[#DAA520]'}
-                    >
-                        Admininistración 
-                    </NavLink>
-                </li>
-                ):( <></> )} 
-             
+                        <NavLink
+                            to="/Usuarios"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-[#DAA520] border-b-2 border-[#DAA520] font-semibold"
+                                    : "text-white hover:text-[#DAA520]"
+                            }
+                        >
+                            Administración
+                        </NavLink>
+                    </li>
+                )}
                 {context.dataToken ? (
-                    // Si el usuario está logeado, mostramos su nombre y el botón "Cerrar sesión"
                     <li className="relative">
                         <button
                             onClick={toggleDropdown}
@@ -77,7 +118,7 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                         >
                             Hola {context.dataUser?.name || "Invitado"}
                             <svg
-                                className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"
+                                className={`w-4 h-4 ml-1 transition-transform ${isDropdownOpen ? "rotate-180" : "rotate-0"
                                     }`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
@@ -101,8 +142,6 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                             </div>
                         )}
                     </li>
-                   
-
                 ) : (
                     <li className="relative">
                         <button
@@ -111,7 +150,8 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
                         >
                             Iniciar Sesión
                             <svg
-                                className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                                className={`w-4 h-4 ml-1 transition-transform ${isDropdownOpen ? "rotate-180" : "rotate-0"
+                                    }`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
