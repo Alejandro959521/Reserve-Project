@@ -33,8 +33,6 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 require('./utils/auth');
 
-
-
 app.listen(port, () => {
     console.log("servidor en el puerto 8082");
 });

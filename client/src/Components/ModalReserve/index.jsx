@@ -116,7 +116,7 @@ const ModalReserve = ({ isOpen, onClose, isEditing, infoReserve }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-30">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                 <h2 className="text-xl font-bold mb-4">{isEditing ? 'Editar Reserva' : 'Crear Reserva'}</h2>
                 <input

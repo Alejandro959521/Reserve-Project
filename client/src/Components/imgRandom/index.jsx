@@ -37,7 +37,7 @@ const imgRandom = () => {
 
     return (
 
-        <div className="relative overflow-hidden h-screen">
+        <div className="relative overflow-hidden h-screen z-10">
             <img
                 src={listImage[currentImageIndex]}
                 alt="Fondo de habitaciones"
