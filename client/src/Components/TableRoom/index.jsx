@@ -57,7 +57,7 @@ const TableRoom = () => {
                                 <img
                                     src={item.image}
                                     alt="Imagen"
-                                    className="w-48 h-48 object-cover mx-auto"
+                                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto object-cover mx-auto"
                                 />
                             </td>
                             <td className="px-4 py-2 border break-words border-gray-300">{item.description}</td>

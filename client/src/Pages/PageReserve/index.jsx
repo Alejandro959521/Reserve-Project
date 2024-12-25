@@ -123,7 +123,9 @@ const handleInfo2 = (event) => {
         !dataForm.name ||
         !dataForm.email ||
         !dataForm.phone
-    ) {
+    ) 
+    
+    {
         alert("Todos los campos son obligatorios.");
         return;
     }

@@ -41,7 +41,7 @@ const imgRandom = () => {
             <img
                 src={listImage[currentImageIndex]}
                 alt="Fondo de habitaciones"
-                className="absolute top-0 left-0 w-full h-full object-fill"
+                className="absolute top-0 left-0 w-full h-full object-cover md:object-fill"
             />
             <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-50 text-white">
                 <h1 className="text-center font-extrabold text-4xl md:text-6xl lg:text-7xl drop-shadow-md">

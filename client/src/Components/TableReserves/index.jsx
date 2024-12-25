@@ -25,17 +25,17 @@ const TableReserves = () => {
 
 
     return (
-        <div className="p-5 flex-1">
-             <div className="flex justify-between items-center mb-4">               
-                <h1 className="text-2xl font-bold text-left">Reservas</h1>             
-                <div className="flex-grow flex justify-center pr-28">
+        <div className="p-5 flex-1 max-w-full md:max-w-screen-lg mx-auto">
+             <div className="flex flex-col md:flex-row justify-between items-center mb-4">               
+                <h1 className="text-lg md:text-2xl font-bold text-center mb-4 md:text-left">Reservas</h1>             
+                <div className="flex-grow flex justify-center md:justify-center md:pr-28">
                     <button onClick={openCreateModal} className="bg-green-700 text-white border rounded-md px-4 py-2 font-medium hover:bg-green-600 transition duration-300 ease-in-out">
                         Crear Nueva Reserva
                     </button>
                 </div>
             </div>
-           
-            <table className="min-w-full bg-white border border-gray-300">
+            <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-300 text-sm md:text-base">
                 <thead>
                     <tr className="text-center">
                         <th className="px-4 py-2 border border-gray-300">Nombre y Apellido</th>
@@ -70,7 +70,7 @@ const TableReserves = () => {
                     
                 </tbody>
             </table>
-
+            </div>
             <ModalReserve
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

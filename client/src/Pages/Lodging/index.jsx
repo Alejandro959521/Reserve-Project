@@ -15,7 +15,7 @@ function Loadging() {
                 <img
                     src={img2}
                     alt="Fondo"
-                    className="absolute top-0 left-0 w-full h-full object-fill"
+                    className="absolute top-0 left-0 w-full h-full object-cover md:object-fill"
                 />
                 <p className="relative text-3xl sm:text-4xl md:text-6xl mt-12 text-center text-white bg-black bg-opacity-50 p-4 rounded-lg max-w-screen-md mx-auto">
                     Un lugar único en el corazón de Merida
