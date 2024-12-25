@@ -33,15 +33,15 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="bg-gray-800 text-white w-64 h-screen p-5">
-            <h2 className="text-2xl font-semibold mb-8">Hotel Cumbres Altas</h2>
+        <div className="bg-gray-800 text-white w-full md:w-64 flex-shrink-0  h-auto md:h-screen p-5">
+            <h2 className="text-xl md:text-2xl font-semibold mb-8 text-center md:text-left">Hotel Cumbres Altas</h2>
             <ul>
                 <li className="mb-4"
                 onClick={() => changetoUsers()}
                 >
                     <button 
                                                
-                      className={`w-full text-left px-4 py-2 rounded ${
+                      className={`w-full text-left px-4 py-2 text-center rounded ${
                           activeItem === 'Usuarios' ? 'bg-gray-700' : 'hover:bg-gray-700'
                       }`}
                     >
@@ -52,7 +52,7 @@ const Sidebar = () => {
                     <button 
                     
                          
-                    className={`w-full text-left px-4 py-2 rounded ${
+                    className={`w-full text-left px-4 py-2 text-center rounded ${
                         activeItem === 'Habitaciones' ? 'bg-gray-700' : 'hover:bg-gray-700'
                     }`}
                     >
@@ -63,7 +63,7 @@ const Sidebar = () => {
                 onClick={() => changetoReserves()}
                 >
                    <button                           
-                      className={`w-full text-left px-4 py-2 rounded ${
+                      className={`w-full text-left px-4 py-2 text-center rounded ${
                           activeItem === 'Reservas' ? 'bg-gray-700' : 'hover:bg-gray-700'
                       }`}
                     

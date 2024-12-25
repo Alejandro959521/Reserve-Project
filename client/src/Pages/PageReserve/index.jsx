@@ -137,11 +137,11 @@ const handleInfo2 = (event) => {
 
     return (
         <> 
-         <div className="flex flex-col items-center space-y-6 p-8 bg-slate-300">
-            <label className="text-3xl font-semibold mb-4">Reserva de la habitación "{item.name}"</label>
-            <div className="flex space-x-16 items-start">
+         <div className="flex flex-col items-center space-y-6 p-8 bg-slate-300 max-w-screen-lg mx-auto">
+            <label className="text-xl md:text-3xl  font-semibold mb-4">Reserva de la habitación "{item.name}"</label>
+            <div className="flex flex-wrap space-x-0 md:space-x-16 items-start">
                 {/* Calendario de Fecha de Entrada */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center w-full md:w-auto">
                     <label className="text-sm font-medium mb-2">Fecha de Entrada</label>
                     <DatePicker
                         selected={dataReserve.startDate}
@@ -161,7 +161,7 @@ const handleInfo2 = (event) => {
                 </div>
 
                 {/* Calendario de Fecha de Salida */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col md:mt-0 mt-4 items-center w-full md:w-auto">
                     <label className="text-sm font-medium mb-2">Fecha de Salida</label>
                     <DatePicker
                         selected={dataReserve.endDate}
@@ -181,7 +181,7 @@ const handleInfo2 = (event) => {
                 </div>
 
                 {/* Recuadro de fechas seleccionadas y total */}
-                <div className="flex flex-col items-center p-4 border border-black rounded-md mt-8">
+                <div className="flex flex-col items-center text-center p-4 border border-black rounded-md mt-4 md:mt-8 w-full md:w-1/4">
                     <label className="text-lg font-semibold mb-4">Fechas seleccionadas</label>
                     <input
                         type="text"
@@ -191,7 +191,7 @@ const handleInfo2 = (event) => {
                               : ""
                           }
                         readOnly
-                        className="p-2 mb-2 border border-black rounded-md text-center w-40 placeholder-gray-600"
+                        className="p-2 mb-2 border border-black rounded-md text-center w-full placeholder-gray-600"
                         placeholder="Entrada"
                      
                     />
@@ -203,7 +203,7 @@ const handleInfo2 = (event) => {
                               : ""
                           }
                         readOnly
-                        className="p-2 mb-4 border border-black rounded-md text-center w-40 placeholder-gray-600"
+                        className="p-2 mb-4 border border-black rounded-md text-center w-full placeholder-gray-600"
                         placeholder="Salida"
                       
 

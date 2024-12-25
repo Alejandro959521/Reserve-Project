@@ -47,7 +47,7 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
   
         {/* Lista de enlaces */}
         <ul
-          className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 absolute md:static bg-[#003366] w-full md:w-auto left-0 transition-all duration-300 space-x-8 pr-4 ${
+          className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 absolute md:static bg-[#003366] w-full md:w-auto left-0 transition-all duration-300 md:space-x-8 pr-4 ${
             isMenuOpen ? "top-32" : "top-[-500px]"
           } md:top-auto`}
         >
