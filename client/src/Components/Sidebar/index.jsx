@@ -10,7 +10,7 @@ const Sidebar = () => {
     const [activeItem, setActiveItem] = useState('Usuarios');
 
  useEffect(() => {
-        // Detecta la ruta actual y actualiza el estado de activeItem
+       
         if (location.pathname.includes('/Usuarios')) {
             setActiveItem('Usuarios');
         } else if (location.pathname.includes('/Habitaciones')) {

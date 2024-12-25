@@ -30,7 +30,6 @@ const imgRandom = () => {
             });
         }, 4000);
 
-        console.log("aqui intervalId", currentImageIndex)
         return () => clearInterval(intervalId);
 
     }, [listImage, 4000]);

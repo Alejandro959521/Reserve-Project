@@ -29,9 +29,12 @@ function Loadging() {
                         <p className="text-dark text-2xl sm:text-3xl md:text-4xl mb-4 font-bold items-center ">{item.name}</p>
                         <p className="text-dark text-base sm:text-lg md:text-xl items-center ">
                             {item.description}
+                            </p>
                             <br />
+                            
                             <p className="font-bold text-center text-2xl mt-4">Precio: {item.price}$/Día</p>
-                        </p>
+                            
+                        
                         <button
                             className="mx-auto md:mx-0 bg-[#003366] text-white border border-[#003366] rounded-md px-6 py-2 text-sm sm:text-base font-medium w-32 hover:bg-gray-200 hover:text-[#003366] transition duration-300 ease-in-out mt-4"
                             onClick={() => navigate('/Reserva', { state: { room: item } })}

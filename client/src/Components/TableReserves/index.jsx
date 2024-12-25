@@ -74,7 +74,7 @@ const TableReserves = () => {
             <ModalReserve
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                // onSave={handleSave}
+                
                 isEditing={isEditing}
                 infoReserve={infoReserve}
             />

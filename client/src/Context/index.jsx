@@ -48,7 +48,6 @@ export const InfoProvider = ({ children }) => {
         setdataUser(body.user)
         setdataToken(body.token)       
         localStorage.setItem("token", body.token)
-        console.log(body.token)
         alert("Bienvenido");
         
       })
@@ -137,7 +136,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Usuario creado");
+        
         alert("usuario creado ");
         getUser();
       })
@@ -165,7 +164,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Habitación creada con exito");
+        
         alert("Habitación creada con exito");
         getRoom();
       })
@@ -193,7 +192,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Reserva creada con exito");
+        
         alert("Reserva creada con exito");
         getReserves();
       })
@@ -221,7 +220,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Usuario actualizado");
+        
         alert("usuario actualizado ");
         getUser();
       })
@@ -249,7 +248,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Habitación actualizada");
+        
         alert("Habitación actualizada");
         getRoom();
       })
@@ -277,7 +276,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Reserva actualizada");
+        
         alert("Reserva actualizada");
         getReserves();
       })
@@ -304,7 +303,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Usuario eliminado");
+        
         alert("Usuario eliminado correctamente");
         getUser();
       })
@@ -332,7 +331,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Habitación eliminada");
+        
         alert("Habitación eliminada correctamente");
         getRoom();
       })
@@ -360,7 +359,7 @@ export const InfoProvider = ({ children }) => {
         return response.json();
       })
       .then(() => {
-        console.log("Reserva eliminada");
+        
         alert("Reserva eliminada correctamente");
         getReserves();
       })

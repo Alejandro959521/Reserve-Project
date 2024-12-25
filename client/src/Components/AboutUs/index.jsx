@@ -2,10 +2,7 @@ import img1 from "./../../../img/img5.jpg"
 
 
 
-
-
 const AboutUs = () => {
-
 
     return (
         <div id="aboutSection" className="py-12 bg-gray-800 text-white">

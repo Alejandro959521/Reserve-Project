@@ -45,7 +45,7 @@ function PageReserve() {
     }
 
 
-    // Calcular el total al seleccionar ambas fechas
+    
     useEffect(() => {
         calculator();
         if (item.id) {
@@ -114,6 +114,10 @@ const handleInfo2 = (event) => {
         ...dataReserve,
         comentary: dataReserve.comentary.trim() || ".", 
     };
+    if(!context.dataToken) {
+        alert("Tiene que logearse para poder reservar");
+         return;
+        }
     if (
         !dataReserve.userId ||
         !dataReserve.roomId ||
@@ -129,10 +133,8 @@ const handleInfo2 = (event) => {
         alert("Todos los campos son obligatorios.");
         return;
     }
-    if(!context.dataToken) {
-        alert("Tiene que logearse para poder reservar");
-         return;
-        }
+  
+        
     context.createReserve(reserveData)
     resetForm();
  }
@@ -142,7 +144,7 @@ const handleInfo2 = (event) => {
          <div className="flex flex-col items-center space-y-6 p-8 bg-slate-300 max-w-screen-lg mx-auto">
             <label className="text-xl md:text-3xl  font-semibold mb-4">Reserva de la habitación "{item.name}"</label>
             <div className="flex flex-wrap space-x-0 md:space-x-16 items-start">
-                {/* Calendario de Fecha de Entrada */}
+                
                 <div className="flex flex-col items-center w-full md:w-auto">
                     <label className="text-sm font-medium mb-2">Fecha de Entrada</label>
                     <DatePicker
@@ -162,7 +164,7 @@ const handleInfo2 = (event) => {
                     />
                 </div>
 
-                {/* Calendario de Fecha de Salida */}
+               
                 <div className="flex flex-col md:mt-0 mt-4 items-center w-full md:w-auto">
                     <label className="text-sm font-medium mb-2">Fecha de Salida</label>
                     <DatePicker
@@ -182,7 +184,7 @@ const handleInfo2 = (event) => {
                     />
                 </div>
 
-                {/* Recuadro de fechas seleccionadas y total */}
+               
                 <div className="flex flex-col items-center text-center p-4 border border-black rounded-md mt-4 md:mt-8 w-full md:w-1/4">
                     <label className="text-lg font-semibold mb-4">Fechas seleccionadas</label>
                     <input
@@ -216,7 +218,7 @@ const handleInfo2 = (event) => {
                 </div>
             </div>
 
-            {/* Formulario de información adicional */}
+            
             <form className="w-full max-w-md mt-8 space-y-4" onSubmit={createReserve}>
                 <input
                     type="text"

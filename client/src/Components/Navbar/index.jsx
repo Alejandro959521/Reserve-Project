@@ -8,10 +8,10 @@ import { InfoContext } from "../../Context"
 const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
     const context = useContext(InfoContext);
   
-    // Estado para el menú hamburguesa
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-    // Estado para el desplegable de inicio de sesión
+    
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -19,12 +19,12 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
   
     return (
       <nav className="bg-[#003366] flex items-center justify-between w-full p-4 text-lg z-20 relative">
-        {/* Logo */}
+       
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-36" />
         </div>
   
-        {/* Menú hamburguesa para móviles */}
+        
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
@@ -45,7 +45,7 @@ const Navbar = ({ openLoginClick, ChangeToSingUp }) => {
           </svg>
         </button>
   
-        {/* Lista de enlaces */}
+        
         <ul
           className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 absolute md:static bg-[#003366] w-full md:w-auto left-0 transition-all duration-300 md:space-x-8 pr-4 ${
             isMenuOpen ? "top-32" : "top-[-500px]"
