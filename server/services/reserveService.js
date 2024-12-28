@@ -124,7 +124,7 @@ class ReserveServices {
       );
     }
 
-    // Actualizar la reserva después de validar
+    
     const reserve = await this.findOne(id);
     const updatedReserve = await reserve.update(changes);
     return updatedReserve;
