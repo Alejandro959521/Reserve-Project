@@ -27,7 +27,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function createToken(data) {
-    fetch("http://localhost:8082/api/v1/auth/login", {
+    fetch("https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getUser() {
-    fetch('http://localhost:8082/api/v1/users')
+    fetch('https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/users')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -75,7 +75,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getRoom() {
-    fetch('http://localhost:8082/api/v1/rooms')
+    fetch('https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/rooms')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -89,7 +89,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getRoomId(roomId) {
-    fetch(`http://localhost:8082/api/v1/rooms/${roomId}`)
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/rooms/${roomId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -103,7 +103,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getReserves() {
-    fetch('http://localhost:8082/api/v1/reserves')
+    fetch('https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/reserves')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -118,7 +118,7 @@ export const InfoProvider = ({ children }) => {
 
   function createUser(userData) {
 
-    fetch("http://localhost:8082/api/v1/users", {
+    fetch("https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +148,7 @@ export const InfoProvider = ({ children }) => {
 
   function createRoom(roomData) {
 
-    fetch("http://localhost:8082/api/v1/rooms", {
+    fetch("https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/rooms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -176,7 +176,7 @@ export const InfoProvider = ({ children }) => {
 
   function createReserve(reserveData) {
 
-    fetch("http://localhost:8082/api/v1/reserves", {
+    fetch("https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/reserves", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -204,7 +204,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateUser(userData, userId) {
 
-    fetch(`http://localhost:8082/api/v1/users/${userId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -232,7 +232,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateRoom(roomData, roomId) {
 
-    fetch(`http://localhost:8082/api/v1/rooms/${roomId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/rooms/${roomId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -260,7 +260,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateReserve(reserveData, reserveId) {
 
-    fetch(`http://localhost:8082/api/v1/reserves/${reserveId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/reserves/${reserveId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -288,7 +288,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteUser(userId) {
 
-    fetch(`http://localhost:8082/api/v1/users/${userId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/users/${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -316,7 +316,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteRoom(roomId) {
 
-    fetch(`http://localhost:8082/api/v1/rooms/${roomId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/rooms/${roomId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -344,7 +344,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteReserve(reserveId) {
 
-    fetch(`http://localhost:8082/api/v1/reserves/${reserveId}`, {
+    fetch(`https://arcane-shore-68428-096679b21841.herokuapp.com/api/v1/reserves/${reserveId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
