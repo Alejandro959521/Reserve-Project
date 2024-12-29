@@ -10,7 +10,9 @@ const passport = require('passport');
 
 const service = new UserServices();
 
-router.get("/", async (req, res, next) => {
+router.get("/",
+  
+  async (req, res, next) => {
   try {
     const users = await service.find();
     res.json(users);
@@ -20,6 +22,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get('/:id',
+  
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -33,8 +36,6 @@ router.get('/:id',
 );
 
 router.post('/',
-    passport.authenticate('jwt',{session:false}),
-    checkAdminRole,
   validatorHandler(createUserSchema,'body'),
   async (req, res, next) => {
     try {
@@ -48,8 +49,8 @@ router.post('/',
 );
 
 router.patch('/:id',
-    passport.authenticate('jwt',{session:false}),
-    checkAdminRole,
+  passport.authenticate('jwt',{session:false}),
+  checkAdminRole,
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateUserSchema, 'body'),
   async (req, res, next) => {
