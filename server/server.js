@@ -11,7 +11,7 @@ const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-const whitelist = ['http://localhost:8082', 'http://localhost:5173','https://hotel-h8fqu9daz-miguels-projects-ffa84c46.vercel.app'];
+const whitelist = ['http://localhost:8082', 'http://localhost:5173',"https://hotel-dun-rho.vercel.app",'https://hotel-h8fqu9daz-miguels-projects-ffa84c46.vercel.app'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
