@@ -38,7 +38,7 @@ const Footer = () => {
                     </div>
 
                     <div className="w-full flex justify-center space-x-4">
-                         <a
+                          <a
                             href="https://www.twitter.com"
                             target="_blank"
                             rel="noopener noreferrer"
