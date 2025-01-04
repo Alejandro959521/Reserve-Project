@@ -33,7 +33,7 @@ const Footer = () => {
                             <strong>Teléfono:</strong> +564123434567
                         </p>
                         <p className="text-base md:text-lg mb-2">
-                            <strong>Ubicación:</strong> Buenos Aires, Argentina
+                            <strong>Ubicación:</strong> Mérida, Venezuela
                         </p>
                     </div>
 
