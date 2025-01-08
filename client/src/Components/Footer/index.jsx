@@ -20,14 +20,14 @@ const Footer = () => {
                     <div className="w-full md:w-1/3 text-center md:text-left">
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Acerca de:</h3>
                         <p className="text-base md:text-lg leading-relaxed">
-                            Fotografía de alta calidad y diseño al alcance de tu habitación.
+                        Encuentra el lugar perfecto para tu descanso y realiza tu reserva de manera fácil y rápida.
                         </p>
                     </div>
 
                     <div className="w-full md:w-1/3 text-center md:text-left">
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Contacto:</h3>
                         <p className="text-base md:text-lg mb-2">
-                            <strong>Email:</strong> CumbresAltas@gmail.com
+                            <strong>Email:</strong> CumbresAltas@mail.com
                         </p>
                         <p className="text-base md:text-lg mb-2">
                             <strong>Teléfono:</strong> +564123434567
