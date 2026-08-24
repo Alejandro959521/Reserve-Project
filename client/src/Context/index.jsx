@@ -60,7 +60,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getUser() {
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/users`)
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/users`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -75,7 +75,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getRoom() {
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/rooms`)
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/rooms`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -89,7 +89,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getRoomId(roomId) {
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/rooms/${roomId}`)
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/rooms/${roomId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -103,7 +103,7 @@ export const InfoProvider = ({ children }) => {
   }
 
   function getReserves() {
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/reserves`)
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/reserves`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');
@@ -118,7 +118,7 @@ export const InfoProvider = ({ children }) => {
 
   function createUser(userData) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/users`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +148,7 @@ export const InfoProvider = ({ children }) => {
 
   function createRoom(roomData) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/rooms`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/rooms`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -176,7 +176,7 @@ export const InfoProvider = ({ children }) => {
 
   function createReserve(reserveData) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/reserves`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/reserves`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -204,7 +204,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateUser(userData, userId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/users/${userId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -232,7 +232,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateRoom(roomData, roomId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/rooms/${roomId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/rooms/${roomId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -260,7 +260,7 @@ export const InfoProvider = ({ children }) => {
 
   function updateReserve(reserveData, reserveId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/reserves/${reserveId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/reserves/${reserveId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -288,7 +288,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteUser(userId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/users/${userId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/users/${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -316,7 +316,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteRoom(roomId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/rooms/${roomId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/rooms/${roomId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -344,7 +344,7 @@ export const InfoProvider = ({ children }) => {
 
   function deleteReserve(reserveId) {
 
-    fetch(`${import.meta.env.URL_BACKEND}api/v1/reserves/${reserveId}`, {
+    fetch(`${import.meta.env.VITE_URL_BACKEND}api/v1/reserves/${reserveId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
